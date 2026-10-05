@@ -1,0 +1,4 @@
+   logs/
+   *.nii.gz
+   __pycache__/
+   *.docx
