@@ -1,8 +1,0 @@
-"hypothesis","structure","primary","exclude_1s","no_iop","no_combat","no_icv","include_wb2","first_pass","robust"
-"H1","gm",TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
-"H2","wm",TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
-"H3","csf",TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
-"H4","L_Hipp",TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
-"H4","R_Hipp",TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
-"H4","L_Thal",TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE
-"H4","R_Thal",TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE

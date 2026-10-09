@@ -1,7 +1,0 @@
-comparison,rating,n,agreement,kappa,kappa_weighted,fail_agreement,fails_a,fails_b
-retest vs main (reviewed),whole-brain,50,0.64,0.217,0.219,0.96,1,1
-retest vs main (reviewed),subcortical,50,0.72,0.455,0.466,0.98,0,1
-retest vs first pass,whole-brain,50,0.62,0.182,0.209,0.94,1,2
-retest vs first pass,subcortical,50,0.72,0.455,0.466,0.98,0,1
-practice vs main,whole-brain,24,0.583,0.216,0.281,1.0,1,1
-practice vs main,subcortical,24,0.583,0.339,0.314,0.792,6,1
