@@ -1,6 +1,6 @@
 # Brain Changes Across the Lifespan: Estimating Age from MRI
 
-How do brain volumes change from age 20 to 86, and can a machine-learning model tell how old a brain is? A reproducible structural MRI pipeline on 563 open-access scans from three London hospitals.
+How do brain volumes change from age 20 to 86, and can a machine-learning model predict how old a brain is? A reproducible structural MRI pipeline on 563 open-access scans from three London hospitals.
 
 **Status:** pre-registered analysis complete (8 October 2026). H1–H5 supported, H6 not supported, H7 technically met but uninformative (see [Results](#results)). The analysis plan was pre-registered in [PREREGISTRATION.md](PREREGISTRATION.md) before any models were run.
 
