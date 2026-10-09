@@ -2,7 +2,82 @@
 
 How do brain volumes change from age 20 to 86, and can a machine-learning model predict how old a brain is? A reproducible structural MRI pipeline on 563 open-access scans from three London hospitals.
 
-**Status:** pre-registered analysis complete (8 October 2026). H1–H5 supported, H6 not supported, H7 technically met but uninformative (see [Results](#results)). The analysis plan was pre-registered in [PREREGISTRATION.md](PREREGISTRATION.md) before any models were run.
+**Status:** pre-registered analysis complete (8 October 2026). H1–H5 supported, H6 not supported, H7 technically met but uninformative (hypotheses and abbreviations are defined in [Key terms](#key-terms); details in [Results](#results)). The analysis plan was pre-registered in [PREREGISTRATION.md](PREREGISTRATION.md) before any models were run.
+
+## Key terms
+
+**The seven hypotheses** (written down in [PREREGISTRATION.md](PREREGISTRATION.md) before any analysis)
+
+| | Prediction |
+| --- | --- |
+| H1 | Grey matter volume declines with age |
+| H2 | White matter volume rises into midlife, then declines |
+| H3 | Cerebrospinal fluid (CSF) volume rises with age, faster after 60 |
+| H4 | Hippocampus and thalamus volumes decline with age, faster after 60 |
+| H5 | A brain age model predicts age better than guessing everyone's mean age |
+| H6 | The brain age model is less accurate on a hospital it wasn't trained on |
+| H7 | Small studies detect the grey matter–age effect less often and overestimate it when they do (the "winner's curse") |
+
+**Brain anatomy**
+
+| Term | Meaning |
+| --- | --- |
+| Grey matter | Brain tissue made mostly of nerve cell bodies, where information is processed |
+| White matter | Bundles of nerve fibres that carry signals between brain regions |
+| Cerebrospinal fluid (CSF) | Fluid in and around the brain; its volume grows as brain tissue shrinks |
+| Subcortical structures | Groups of grey matter deep inside the brain: thalamus (relays sensory signals), caudate, putamen and pallidum (movement and habits), accumbens (reward), hippocampus (memory), amygdala (emotion) and brainstem (connects brain and spinal cord). L and R = left and right |
+| Intracranial volume (ICV) | Total volume inside the skull; used to adjust for head size |
+| Atrophy | Shrinkage of brain tissue |
+
+**Scans and processing**
+
+| Term | Meaning |
+| --- | --- |
+| MRI | Magnetic resonance imaging: a scanner that uses magnetic fields to image the body without radiation |
+| T1 scan (T1-weighted) | A type of MRI scan that shows grey matter, white matter and fluid with good contrast, used to measure brain structure |
+| IXI | Information eXtraction from Images: the open-access dataset of about 600 healthy adults' scans used here, from Guy's Hospital (Guy's), Hammersmith Hospital (HH) and the Institute of Psychiatry (IOP) in London |
+| Site | The hospital where a scan was taken; each used a different scanner |
+| FSL | FMRIB Software Library: free, widely used software for analysing brain scans |
+| BET | Brain Extraction Tool (FSL): removes the skull and scalp from the image |
+| FAST | FMRIB's Automated Segmentation Tool (FSL): labels each voxel as grey matter, white matter or CSF |
+| FIRST | FMRIB's Integrated Registration and Segmentation Tool (FSL): outlines the 15 subcortical structures |
+| SIENAX | Structural Image Evaluation using Normalisation of Atrophy, cross-sectional (FSL): estimates head size |
+| Voxel | A 3D pixel, the smallest unit of a brain image |
+| cm³ | Cubic centimetres (= millilitres), the unit for volumes |
+
+**Quality control**
+
+| Term | Meaning |
+| --- | --- |
+| QC | Quality control: checking each scan's processing for errors before analysis |
+| Visual rating (0 / 1 / 2) | Each scan's outlines were rated good (0), minor issue (1, kept) or failure (2, excluded) |
+| Blind rating | Scans were rated under random codes, so age, sex and hospital couldn't influence the rating |
+| Test–retest | 50 scans were rated a second time to check that ratings are consistent |
+| Cohen's kappa | A measure of rating agreement that corrects for agreement by chance (0 = chance, 1 = perfect) |
+| CNR / SNR | Contrast-to-noise and signal-to-noise ratios: measures of image quality (higher = clearer) |
+| Robust z-score | How unusual a value is compared with the others, measured in a way that isn't thrown off by extreme values (MAD = median absolute deviation) |
+
+**Study design and statistics**
+
+| Term | Meaning |
+| --- | --- |
+| Pre-registration | Writing down the hypotheses and analysis plan before seeing the results, so they can't be changed to fit the data |
+| Deviation | A change from the pre-registered plan, reported with its reason |
+| Blind analysis / shuffled data | All code was written and tested on a copy of the data with age, sex and hospital shuffled between people, so no real result could steer it |
+| Unblinding | Linking the QC ratings to the real data once all rating was finished |
+| Sensitivity analysis | Repeating an analysis with a different reasonable choice (for example, stricter QC) to check the result doesn't depend on it |
+| ComBat | A statistical method that removes differences between scanners while keeping real effects such as age |
+| GAM | Generalized additive model: a regression that fits smooth curves instead of straight lines, used for the lifespan curves (R package mgcv) |
+| p-value; FDR | The chance of a result at least this strong if there were no real effect; FDR (false discovery rate) correction adjusts p-values when many structures are tested at once |
+| Brain age | The age a model predicts from someone's brain volumes; the brain age gap is predicted minus real age |
+| Ridge regression, random forest, gradient boosting | Three machine-learning model types used to predict age (Python package scikit-learn) |
+| Baseline | A "model" that guesses the average age for everyone; a real model must beat it |
+| MAE | Mean absolute error: the average size of a prediction's error, in years |
+| Nested cross-validation | Repeatedly training on part of the data and testing on the rest, with model settings tuned only on training data, so the test scores are honest |
+| Leave-one-site-out | Training on two hospitals and testing on the third, to check the model works on an unseen scanner |
+| Bias correction | A standard adjustment for brain age models' tendency to overestimate young people's age and underestimate older people's |
+| Detection rate | The share of simulated studies that find an effect (p < .05); also called statistical power |
+| Winner's curse | Small studies that do find an effect tend to overestimate its size |
 
 ## Key findings
 
