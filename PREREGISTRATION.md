@@ -1,4 +1,4 @@
-# Brain Ageing Across the Lifespan: Pre-registration
+# Brain Changes Across the Lifespan: Pre-registration
 
 **Author:** Michael Goldenitz · **Registered:** 2026-10-05 (date of the first commit of this file)
 

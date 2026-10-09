@@ -1,8 +1,15 @@
-# Brain Ageing Across the Lifespan
+# Brain Changes Across the Lifespan: Estimating Age from MRI
 
 How do brain volumes change from age 20 to 86, and can a machine-learning model tell how old a brain is? A reproducible structural MRI pipeline on 563 open-access scans from three London hospitals.
 
-**Status:** pre-registered analysis complete (8 October 2026). H1–H5 supported, H6 not supported, H7 technically met but uninformative (see [Results](#results)). Still to come: Power BI dashboard. The analysis plan is pre-registered in [PREREGISTRATION.md](PREREGISTRATION.md) before any models are run.
+**Status:** pre-registered analysis complete (8 October 2026). H1–H5 supported, H6 not supported, H7 technically met but uninformative (see [Results](#results)). The analysis plan was pre-registered in [PREREGISTRATION.md](PREREGISTRATION.md) before any models were run.
+
+## Key findings
+
+- **Brains shrink steadily from 20 to 86.** Grey matter falls by about 20 cm³ (3.5%) per decade. White matter peaks in the late 30s and then declines, and the fluid-filled spaces grow twice as fast after 60. The **hippocampus**, central to memory, is stable until about 60 and then loses about 8% per decade.
+- **A machine-learning model can estimate age from 18 brain volumes to within 7.4 years on average**, half the error of guessing the mean age, and it worked as well on hospitals it had never seen as on its own.
+- **Small studies mislead.** With 25 people, a real hippocampus–age effect is found only about 1 time in 5, and when it is, it looks about twice as big as it really is.
+- **The analysis was pre-registered and run blind.** Quality control was rated without knowing who each scan belonged to, and all code was tested on shuffled data before the real results were seen. Every result, including one hypothesis that failed and one that was uninformative, is reported.
 
 ## Pipeline
 
@@ -27,7 +34,7 @@ How do brain volumes change from age 20 to 86, and can a machine-learning model 
 | 9. SQLite database and example queries | `scripts/15_build_database.py`, `sql/` | Python (sqlite3), SQL |
 | 10. Post-hoc checks (baseline choice, head size and the sex effect) | `scripts/16_posthoc_checks.py` | Python (statsmodels) |
 
-Rating rules are in [QC_RATING_GUIDE.md](QC_RATING_GUIDE.md). Later steps (head-size adjustment, ComBat harmonisation, SQL database, GAMs in R, brain age model, sample-size analysis, Power BI dashboard) are described in the pre-registration.
+Rating rules are in [QC_RATING_GUIDE.md](QC_RATING_GUIDE.md). The SQLite database (step 9) is a supporting extra and isn't part of the pre-registered analysis.
 
 ## Quality-control decisions made before unblinding (6 October 2026)
 
