@@ -1,0 +1,13 @@
+POST-HOC CHECKS (not pre-registered)
+
+1. Constant-guess baselines on the primary analysis scans (n = 531)
+   mean age    48.2 -> MAE 14.25 years
+   median age  47.7 -> MAE 14.25 years
+
+2. Brain age gap (bias-corrected) and sex, with and without intracranial volume
+   mean ICV (litres): female 1.265, male 1.441
+   gap_corrected ~ age + sex + site
+      sex[T.male]   +5.16 years  (95% CI +3.24 to +7.07, p = 1.76e-07)
+   gap_corrected ~ age + sex + site + icv_l
+      sex[T.male]   +2.94 years  (95% CI +0.53 to +5.35, p = 0.0168)
+      icv_l        +12.67 years  (95% CI +4.19 to +21.15, p = 0.00348)
