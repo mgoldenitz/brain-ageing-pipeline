@@ -1,0 +1,12 @@
+subject,flagged,decision,note
+IXI131-HH-1527,L_Pall 4.85 cm3 (z +17.1); R_Pall 4.58 cm3 (z +14.4),fail,outline clearly leaves the structure
+IXI483-HH-2177,L_Pall 3.08 cm3 (z +7.5); R_Pall 3.28 cm3 (z +7.8),fail,outline clearly leaves the structure
+IXI527-HH-2376,L_Pall 2.97 cm3 (z +6.9); R_Pall 2.95 cm3 (z +6.1),fail,outline clearly leaves the structure
+IXI482-HH-2178,R_Pall 2.89 cm3 (z +5.8),keep,outline follows the visible anatomy
+IXI072-HH-2324,R_Hipp 1.12 cm3 (z -5.6),keep,outline follows the visible anatomy
+IXI204-HH-1651,L_Pall 2.71 cm3 (z +5.5),keep,outline follows the visible anatomy
+IXI292-IOP-0877,L_Hipp 1.34 cm3 (z -5.5); R_Hipp 1.30 cm3 (z -5.2); BrStem 6.87 cm3 (z -5.1),fail,outline clearly leaves the structure
+IXI094-HH-1355,L_Hipp 1.42 cm3 (z -5.3); R_Hipp 1.18 cm3 (z -5.5); BrStem 6.10 cm3 (z -5.4),fail,outline clearly leaves the structure
+IXI056-HH-1327,BrStem 6.45 cm3 (z -5.3),fail,outline clearly leaves the structure
+IXI470-IOP-1030,L_Pall 2.64 cm3 (z +5.1),keep,outline follows the visible anatomy
+IXI586-HH-2451,R_Amyg 2.44 cm3 (z +5.1),fail,outline clearly leaves the structure
