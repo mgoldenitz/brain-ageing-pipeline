@@ -244,6 +244,7 @@ lifespan_plot <- function(structures, ncol, file, width, height) {
     geom_ribbon(data = curves, aes(age, ymin = lo, ymax = hi), fill = "#2f6db5", alpha = 0.25) +
     geom_line(data = curves, aes(age, fit), colour = "#2f6db5", linewidth = 0.9) +
     facet_wrap(~ structure, scales = "free_y", ncol = ncol) +
+    scale_x_continuous(breaks = seq(20, 80, 10)) +
     labs(x = "Age (years)", y = expression("Volume (cm"^3*"), adjusted for sex, site and ICV"),
          title = if (SHUFFLED) "BLIND ANALYSIS - shuffled data, results are meaningless"
                  else "Brain volumes across the lifespan (IXI)") +
