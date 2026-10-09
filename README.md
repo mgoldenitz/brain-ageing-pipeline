@@ -1,8 +1,8 @@
 # Brain Changes Across the Lifespan: Estimating Age from MRI
 
-How do brain volumes change from age 20 to 86, and can a machine-learning model predict how old a brain is? A reproducible structural MRI pipeline on 563 open-access scans from three London hospitals.
+How does brain volume change from young adulthood to late adulthood, and can a machine-learning model predict a person's age from their brain scan? A reproducible structural MRI pipeline on 563 open-access scans from three London hospitals.
 
-**Status:** pre-registered analysis complete (8 October 2026). H1–H5 supported, H6 not supported, H7 technically met but uninformative (hypotheses and abbreviations are defined in [Key terms](#key-terms); details in [Results](#results)). The analysis plan was pre-registered in [PREREGISTRATION.md](PREREGISTRATION.md) before any models were run.
+**Status:** Pre-registered analysis complete (8 October 2026). H1–H5 supported, H6 not supported, H7 technically met but uninformative (hypotheses and abbreviations are defined in [Key terms](#key-terms); details in [Results](#results)). The analysis plan was pre-registered in [PREREGISTRATION.md](PREREGISTRATION.md) before any models were run.
 
 ## Key terms
 
@@ -14,7 +14,7 @@ How do brain volumes change from age 20 to 86, and can a machine-learning model 
 | H2 | White matter volume rises into midlife, then declines |
 | H3 | Cerebrospinal fluid (CSF) volume rises with age, faster after 60 |
 | H4 | Hippocampus and thalamus volumes decline with age, faster after 60 |
-| H5 | A brain age model predicts age better than guessing everyone's mean age |
+| H5 | A brain age model predicts age better than guessing all participant's mean age |
 | H6 | The brain age model is less accurate on a hospital it wasn't trained on |
 | H7 | Small studies detect the grey matter–age effect less often and overestimate it when they do (the "winner's curse") |
 
@@ -25,7 +25,7 @@ How do brain volumes change from age 20 to 86, and can a machine-learning model 
 | Grey matter | Brain tissue made mostly of nerve cell bodies, where information is processed |
 | White matter | Bundles of nerve fibres that carry signals between brain regions |
 | Cerebrospinal fluid (CSF) | Fluid in and around the brain; its volume grows as brain tissue shrinks |
-| Subcortical structures | Groups of grey matter deep inside the brain: thalamus (relays sensory signals), caudate, putamen and pallidum (movement and habits), accumbens (reward), hippocampus (memory), amygdala (emotion) and brainstem (connects brain and spinal cord). L and R = left and right |
+| Subcortical structures | Groups of grey matter deep inside the brain: thalamus (relays sensory signals), caudate, putamen and pallidum (movement and coordination), accumbens (reward), hippocampus (memory), amygdala (emotion) and brainstem (connects brain and spinal cord). L and R = left and right |
 | Intracranial volume (ICV) | Total volume inside the skull; used to adjust for head size |
 | Atrophy | Shrinkage of brain tissue |
 
@@ -71,9 +71,9 @@ How do brain volumes change from age 20 to 86, and can a machine-learning model 
 | p-value; FDR | The chance of a result at least this strong if there were no real effect; FDR (false discovery rate) correction adjusts p-values when many structures are tested at once |
 | Brain age | The age a model predicts from someone's brain volumes; the brain age gap is predicted minus real age |
 | Ridge regression, random forest, gradient boosting | Three machine-learning model types used to predict age (Python package scikit-learn) |
-| Baseline | A "model" that guesses the average age for everyone; a real model must beat it |
+| Baseline | A benchmark that predicts the training set’s average age for all participants, without using any brain data. The age-prediction models must perform better than the benchmark to show that brain volume metrics assist the model in predicting age |
 | MAE | Mean absolute error: the average size of a prediction's error, in years |
-| Nested cross-validation | Repeatedly training on part of the data and testing on the rest, with model settings tuned only on training data, so the test scores are honest |
+| Nested cross-validation | Repeatedly training on a sample of the data and testing on the remainder, with model settings tuned only on training data, so the test scores are honest |
 | Leave-one-site-out | Training on two hospitals and testing on the third, to check the model works on an unseen scanner |
 | Bias correction | A standard adjustment for brain age models' tendency to overestimate young people's age and underestimate older people's |
 | Detection rate | The share of simulated studies that find an effect (p < .05); also called statistical power |
@@ -81,7 +81,7 @@ How do brain volumes change from age 20 to 86, and can a machine-learning model 
 
 ## Key findings
 
-- **Brains shrink steadily from 20 to 86.** Grey matter falls by about 20 cm³ (3.5%) per decade. White matter peaks in the late 30s and then declines, and the fluid-filled spaces grow twice as fast after 60. The **hippocampus**, central to memory, is stable until about 60 and then loses about 8% per decade.
+- **Brains shrink steadily from 20 to 86.** Grey matter falls by about 20 cm³ (3.5%) per decade. White matter peaks in the late 30s and then declines, and cerebrospinal fluid (CSF) increases twice as fast after 60. The **hippocampus**, central to memory, is stable until about 60 and then loses about 8% per decade.
 - **A machine-learning model can estimate age from 18 brain volumes to within 7.4 years on average**, half the error of guessing the mean age, and it worked as well on hospitals it had never seen as on its own.
 - **Small studies mislead.** With 25 people, a real hippocampus–age effect is found only about 1 time in 5, and when it is, it looks about twice as big as it really is.
 - **The analysis was pre-registered and run blind.** Quality control was rated without knowing who each scan belonged to, and all code was tested on shuffled data before the real results were seen. Every result, including one hypothesis that failed and one that was uninformative, is reported.
@@ -181,7 +181,7 @@ Exploratory: caudate, putamen and accumbens also decline (FDR p < .001). The **p
 
 | Model | Mean absolute error (years) | Correlation with age |
 | --- | --- | --- |
-| Baseline: everyone gets the training-set mean age | 14.31 | — |
+| Baseline: all participants' age is set to the training-set mean age | 14.31 | — |
 | Ridge regression | 7.41 | 0.82 |
 | **Random forest** (best) | **7.37** | 0.82 |
 | Gradient boosting | 7.39 | 0.82 |
