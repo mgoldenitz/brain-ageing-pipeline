@@ -90,7 +90,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 
 ## How the study was done
 
-*In short:* the brain scans were measured with standard imaging software, the predictions and analysis plan were written down before any results were seen, every scan was checked for software errors without knowing who it belonged to, and all code was tested on scrambled data before the real analysis was run.
+*In short:* The brain scans were measured with standard imaging software, the predictions and analysis plan were written down before any results were seen, every scan was checked for software errors without knowing who it belonged to, and all code was tested on scrambled data before the real analysis was run.
 
 | Step | What happened |
 | --- | --- |
@@ -129,7 +129,7 @@ Rating rules are in [QC_RATING_GUIDE.md](QC_RATING_GUIDE.md). The SQLite databas
 
 ## Quality-control decisions made before unblinding (6 October 2026)
 
-*In short:* scans with a failed whole-brain measurement were removed; scans with only failed deep-brain outlines kept their whole-brain measurements. A second, blind look at every failure reduced the number of whole-brain failures from 72 to 18, and both versions of the ratings are analysed.
+*In short:* Scans with a failed whole-brain measurement were removed; scans with only failed deep-brain outlines kept their whole-brain measurements. A second, blind look at every failure reduced the number of whole-brain failures from 72 to 18, and both versions of the ratings are analysed.
 
 - **Primary analysis:** Follows the pre-registered rule. Scans with a whole-brain rating of 2 are excluded; scans with a subcortical rating of 2 keep their whole-brain volumes but have subcortical volumes set to missing.
 - **Second look at failures:** Every scan rated 2 was re-checked blind, keeping the fail only if the error would change volumes by more than a few percent. First-pass ratings are kept in `data/qc_ratings_firstpass.csv`, and every change is logged in `data/qc_review_log.csv`. Whole-brain fails decreased from 72 to 18 out of 563 participants (3.2%); subcortical fails decreased from 16 to 6 (1.1%).
@@ -137,7 +137,7 @@ Rating rules are in [QC_RATING_GUIDE.md](QC_RATING_GUIDE.md). The SQLite databas
 
 ## Quality control after unblinding (8 October 2026)
 
-*In short:* the ratings proved consistent where it mattered (whether a scan failed), visual checks caught errors the automatic checks missed, and a review of unusually large or small measurements found 7 more software errors. In total, 18 of 563 scans (3.2%) were removed and 13 more had their deep-brain measurements removed.
+*In short:* The ratings proved consistent where it mattered (whether a scan failed), visual checks caught errors the automatic checks missed, and a review of unusually large or small measurements found 7 more software errors. In total, 18 of 563 scans (3.2%) were removed and 13 more had their deep-brain measurements removed.
 
 **Rating reliability.** 50 randomly chosen scans were re-rated under new codes 2 days after the main rating:
 
@@ -170,7 +170,7 @@ Confirmed failures have their subcortical rating set to 2 (subcortical volumes m
 
 ## Results
 
-*In short:* five of the seven predictions were confirmed, one was not (the age model worked just as well on an unfamiliar hospital), and one was technically met but uninformative. Every result held when the analysis was repeated in different reasonable ways.
+*In short:* Five of the seven predictions were confirmed, one was not (the age model worked just as well on an unfamiliar hospital), and one was technically met but uninformative. Every result held when the analysis was repeated in different reasonable ways.
 
 Numbers below come from the main analysis of 545 scans (531 for subcortical structures) unless otherwise stated; full estimates with 95% intervals are in `results/real/gam_results.csv`. All hypothesis results remained unchanged when the analysis was repeated under alternative assumptions, including stricter quality control, exclusion of one hospital, and no scanner harmonisation.
 
@@ -186,7 +186,7 @@ Numbers below come from the main analysis of 545 scans (531 for subcortical stru
 
 ### Lifespan models (H1–H4)
 
-*In short:* the brain gradually loses volume with age. Grey matter shrinks steadily, white matter holds until the late 30s and then declines, the fluid around the brain increases, and the hippocampus (central to memory) stays stable until about 60 and then shrinks.
+*In short:* The brain gradually loses volume with age. Grey matter shrinks steadily, white matter holds until the late 30s and then declines, the fluid around the brain increases, and the hippocampus (central to memory) stays stable until about 60 and then shrinks.
 
 ![Whole-brain volumes across the lifespan](results/real/fig_lifespan_whole_brain.png)
 
@@ -201,7 +201,7 @@ Numbers below come from the main analysis of 545 scans (531 for subcortical stru
 
 ### Brain age model (H5–H6)
 
-*In short:* a computer model estimated participant's age from 18 brain measurements to within about 7.4 years on average, half the error of guessing the average age for everyone, and it worked about as well on scans from a hospital it had never seen.
+*In short:* A computer model estimated participant's age from 18 brain measurements to within about 7.4 years on average, half the error of guessing the average age for everyone, and it worked about as well on scans from a hospital it had never seen.
 
 ![Brain age predictions](results/real/fig_brainage.png)
 
@@ -238,7 +238,7 @@ The model generalised well to scanners it hadn't been trained on: Accuracy decre
 
 ### Sample size and the winner's curse (H7)
 
-*In short:* the planned test couldn't show the problem because the grey matter–age effect is too strong; repeating it for all 18 brain measures showed that small studies often miss weaker effects and exaggerate them when they do find them.
+*In short:* The planned test couldn't show the problem because the grey matter–age effect is too strong; repeating it for all 18 brain measures showed that small studies often miss weaker effects and exaggerate them when they do find them.
 
 **Pre-registered result: criteria met, but uninformative.** The grey matter–age effect was so strong (−2.0 cm³ per year, p ≈ 10⁻¹¹⁸) that even samples of 25 detected it 99.8% of the time, so H7's criteria were technically met but the test hit a ceiling and could not show small-sample bias. The pre-registered simulation is in `results/real/fig_sample_size.png`.
 
@@ -258,7 +258,7 @@ Weaker effects showed a clear winner's curse. At n = 25, the hippocampus–age e
 
 ## Deviations from pre-registration
 
-*In short:* a pre-registration is only trustworthy if changes to the plan are reported openly. There were eight: seven were made while testing the code on scrambled data, before any real results were seen (for example, correcting a typo in the hospital counts and fixing a rule that could "pass" even with meaningless data), and one was a shorter-than-planned gap before the second round of quality ratings.
+*In short:* A pre-registration is only trustworthy if changes to the plan are reported openly. There were eight: seven were made while testing the code on scrambled data, before any real results were seen (for example, correcting a typo in the hospital counts and fixing a rule that could "pass" even with meaningless data), and one was a shorter-than-planned gap before the second round of quality ratings.
 
 <details>
 <summary><b>Show all eight deviations</b></summary>
