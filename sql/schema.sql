@@ -75,7 +75,10 @@ CREATE TABLE qc_final (
     qc_wb        INTEGER CHECK (qc_wb IN (0, 1, 2)),          -- reviewed whole-brain rating
     qc_sc        INTEGER CHECK (qc_sc IN (0, 1, 2)),          -- reviewed subcortical rating
     qc_wb_first  INTEGER CHECK (qc_wb_first IN (0, 1, 2)),    -- first-pass ratings
-    qc_sc_first  INTEGER CHECK (qc_sc_first IN (0, 1, 2))
+    qc_sc_first  INTEGER CHECK (qc_sc_first IN (0, 1, 2)),
+    volume_review_fail INTEGER NOT NULL DEFAULT 0 CHECK (volume_review_fail IN (0, 1))
+                                                              -- 1 = confirmed FIRST failure in the extreme-volume
+                                                              --     review (scripts/14b): qc_sc and qc_sc_first set to 2
 );
 
 -- How and when this database was built
