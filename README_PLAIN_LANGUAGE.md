@@ -126,7 +126,7 @@ The weaker the real effect, the more often small studies miss it, and the more t
 
 These checks were added after the main results were known, so they weren't part of the original plan and are reported separately.
 
-- **Other types of model, including a neural network, did no better.** Six different methods all estimated age to within about 7.3–7.7 years. That suggests the limit is the information in the 18 brain measurements, not the choice of method.
+- **Other models, including a neural network, performed the same.** Six different methods all estimated age to within about 7.3–7.7 years. That suggests the limit is the information in the 18 brain measurements, not the choice of method.
 - **The model relied mainly on two measurements.** Grey matter (less grey matter = older) and CSF (more CSF = older) did almost all the work; the deep-brain structures added very little on top.
 - **More scans of the same kind wouldn't help much.** Accuracy improved as the model was given more scans, but levelled off at around 240. Better measurements, such as cortical thickness, would likely help more than more participants.
 - **Automatic outlier detection caught some errors but not others.** Given no information about the quality ratings, it picked out most of the deep-brain outlining errors, but none of the whole-brain errors, which can only be seen by looking at the images. That supports checking every scan by eye.
