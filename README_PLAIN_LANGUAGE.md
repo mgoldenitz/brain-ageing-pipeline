@@ -50,11 +50,11 @@ Every result stayed the same when I re-ran the analysis in different reasonable 
 
 *Each dot is one participant; the blue line is the average trend, and the shaded band shows how certain that trend is. Volumes are adjusted so that differences in sex, hospital and head size don't distort the picture.*
 
-- **Grey matter:** lost about 20 cm³ (3.5%) every decade, in an almost straight line, about 134 cm³ in total from age 20 to 86.
-- **White matter:** peaked around age 37, then declined, slowly at first and about five times faster after 60.
-- **CSF:** rose throughout adulthood, roughly twice as fast after 60.
-- **Hippocampus:** stable until about 60, then lost about 8% per decade on each side.
-- **Thalamus:** shrank throughout adulthood, faster after 60.
+- **Grey matter:** Lost about 20 cm³ (3.5%) every decade, in an almost straight line, about 134 cm³ in total from age 20 to 86.
+- **White matter:** Peaked around age 37, then declined, slowly at first and about five times faster after 60.
+- **CSF:** Rose throughout adulthood, roughly twice as fast after 60.
+- **Hippocampus:** Stable until about 60, then lost about 8% per decade on each side.
+- **Thalamus:** Shrank throughout adulthood, faster after 60.
 
 ![How deep-brain structures change with age](results/real/fig_lifespan_subcortical.png)
 
@@ -64,7 +64,7 @@ Other deep-brain structures involved in movement and reward (caudate, putamen, a
 
 ![Predicted vs real age](results/real/fig_brainage.png)
 
-*Left and middle: each dot is one participant, comparing their predicted age with their real age; a perfect prediction would sit on the dashed line. Right: the average error of each model.*
+*Left and middle: Each dot is one participant, comparing their predicted age with their real age; a perfect prediction would sit on the dashed line. Right: The average error of each model.*
 
 | Method | Average error |
 | --- | --- |
@@ -74,7 +74,7 @@ Other deep-brain structures involved in movement and reward (caudate, putamen, a
 | Gradient boosting | 7.4 years |
 
 - **All three computer models halved the benchmark's error.** They performed almost identically, which suggests the useful information is in the brain measurements themselves, not in the choice of model.
-- **The model worked on unfamiliar hospitals.** When trained on two hospitals and tested on the third, it was about as accurate as when trained and tested within the same hospital. One caveat: the two tests used different amounts of training data, so this comparison isn't perfectly clean.
+- **The model worked on unfamiliar hospitals.** When trained on two hospitals and tested on the third, it was about as accurate as when trained and tested within the same hospital. One caveat: The two tests used different amounts of training data, so this comparison isn't perfectly clean.
 - For context, published models that use the full detail of brain images reach about 3–5 years of error. This model used only 18 simple measurements.
 
 **Extra findings (not part of the original predictions):**
@@ -91,7 +91,7 @@ Other deep-brain structures involved in movement and reward (caudate, putamen, a
 
 ![Small-study simulation for every brain measure](results/real/fig_sample_size_all_structures.png)
 
-*Left: how often a study of each size finds an age effect. Right: how much the studies that did find one overestimated it (1× = accurate). Each line is one brain measure; lighter lines have stronger age effects.*
+*Left: How often a study of each size finds an age effect. Right: How much the studies that did find one overestimated it (1× = accurate). Each line is one brain measure; lighter lines have stronger age effects.*
 
 | Brain measure | Strength of age effect | Found by studies of 25 participants | Found by studies of 100 | How much studies of 25 overestimate it |
 | --- | --- | --- | --- | --- |
@@ -124,8 +124,8 @@ Scans "removed completely" had a failed whole-brain measurement. Scans with only
 
 A pre-registration is only trustworthy if any changes to the plan are reported openly. There were **eight**, all listed in full in the technical README. In short:
 
-- **Seven** were made while testing the code on scrambled data, before any real results were seen: for example, correcting a typo in the hospital counts, writing out the exact pass/fail rules for each prediction, and fixing a rule for H6 that could "pass" even with meaningless data.
-- **One** was a scheduling change: the second round of quality ratings was done 2 days after the first instead of the planned week, which may make the ratings look slightly more consistent than they are.
+- **Seven** were made while testing the code on scrambled data, before any real results were seen: For example, correcting a typo in the hospital counts, writing out the exact pass/fail rules for each prediction, and fixing a rule for H6 that could "pass" even with meaningless data.
+- **One** was a scheduling change: The second round of quality ratings was done 2 days after the first instead of the planned week, which may make the ratings look slightly more consistent than they are.
 
 ## Glossary
 

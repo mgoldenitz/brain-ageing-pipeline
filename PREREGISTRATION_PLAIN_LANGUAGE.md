@@ -40,7 +40,7 @@ I also planned to explore, without firm predictions, whether men and women diffe
 
 **Everyone in the dataset with a scan and a recorded age is included: 563 participants**, all of whom also have a recorded sex.
 
-**The key rule: a scan is only removed if the software clearly made a mistake.** Being unusual is not enough. Removing participants just because their brain looks unusual for their age would throw away exactly the participants who are ageing faster or slower than average, and bias the results.
+**The key rule: A scan is only removed if the software clearly made a mistake.** Being unusual is not enough. Removing participants just because their brain looks unusual for their age would throw away exactly the participants who are ageing faster or slower than average, and bias the results.
 
 1. **Visual check.** Every scan's software output is checked by eye, without knowing the participant's age, sex or hospital, and rated **good (0), minor issue (1, kept) or failed (2, removed)**.
 2. **Consistency check.** 50 random scans are rated again at least a week later, to measure how consistent the ratings are.
@@ -54,7 +54,7 @@ I also planned to explore, without firm predictions, whether men and women diffe
 | --- | --- | --- |
 | Main outcomes | Volumes of grey matter, white matter and fluid | Measured by FSL's tissue-labelling tool (FAST) |
 | Main outcomes | Volumes of 15 deep-brain structures (thalamus, caudate, putamen, pallidum, hippocampus, amygdala and accumbens on each side, plus the brainstem) | Measured by FSL's outlining tool (FIRST) |
-| Main outcome | "Brain age gap": predicted age minus real age | From the age-prediction model |
+| Main outcome | "Brain age gap": Predicted age minus real age | From the age-prediction model |
 | Main factor | Age | From the dataset |
 | Adjusted for | Sex (313 women, 250 men), hospital, head size | From the dataset; head size estimated by FSL (SIENAX) |
 | Recorded only | Image clarity and the visual quality rating | Calculated from the scans; rated by eye |
@@ -83,10 +83,10 @@ The main analyses are repeated in several different reasonable ways. A result is
 
 ## Openness and sharing
 
-- **Timestamp:** the plan is saved publicly on GitHub before any results are looked at; the save date is the plan's official date.
-- **Changes:** any change to the plan is listed, with its reason and date, in the README.
-- **Reporting:** the write-up follows established checklists for brain-imaging studies (COBIDAS) and for prediction models (TRIPOD).
-- **Sharing:** all code, measurements, quality ratings and results are shared on GitHub. The original scans aren't re-shared, but anyone can download them from the IXI website.
+- **Timestamp:** The plan is saved publicly on GitHub before any results are looked at; the save date is the plan's official date.
+- **Changes:** Any change to the plan is listed, with its reason and date, in the README.
+- **Reporting:** The write-up follows established checklists for brain-imaging studies (COBIDAS) and for prediction models (TRIPOD).
+- **Sharing:** All code, measurements, quality ratings and results are shared on GitHub. The original scans aren't re-shared, but anyone can download them from the IXI website.
 
 ## References
 

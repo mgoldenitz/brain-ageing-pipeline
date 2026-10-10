@@ -27,7 +27,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | Grey matter | Brain tissue made mostly of nerve cell bodies, where information is processed |
 | White matter | Bundles of nerve fibres that carry signals between brain regions |
 | CSF | Fluid in and around the brain; its volume grows as brain tissue shrinks |
-| Subcortical structures | Groups of grey matter deep inside the brain: thalamus (relays sensory signals), caudate, putamen and pallidum (movement and coordination), accumbens (reward), hippocampus (memory), amygdala (emotion) and brainstem (connects brain and spinal cord). L and R = left and right |
+| Subcortical structures | Groups of grey matter deep inside the brain: Thalamus (relays sensory signals), caudate, putamen and pallidum (movement and coordination), accumbens (reward), hippocampus (memory), amygdala (emotion) and brainstem (connects brain and spinal cord). L and R = left and right |
 | Intracranial volume (ICV) | Total volume inside the skull; used to adjust for head size |
 | Atrophy | Shrinkage of brain tissue |
 
@@ -35,15 +35,15 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 
 | Term | Meaning |
 | --- | --- |
-| MRI | Magnetic resonance imaging: a scanner that uses magnetic fields to image the body without radiation |
+| MRI | Magnetic resonance imaging: A scanner that uses magnetic fields to image the body without radiation |
 | T1 scan (T1-weighted) | A type of MRI scan that shows grey matter, white matter and CSF with good contrast, used to measure brain structure |
-| IXI | Information eXtraction from Images: the open-access dataset of about 600 healthy adults' scans used here, from Guy's Hospital (Guy's), Hammersmith Hospital (HH) and the Institute of Psychiatry (IOP) in London |
+| IXI | Information eXtraction from Images: The open-access dataset of about 600 healthy adults' scans used here, from Guy's Hospital (Guy's), Hammersmith Hospital (HH) and the Institute of Psychiatry (IOP) in London |
 | Site | The hospital where a scan was taken; each used a different scanner |
-| FSL | FMRIB Software Library: free, widely used software for analysing brain scans |
-| BET | Brain Extraction Tool (FSL): removes the skull and scalp from the image |
-| FAST | FMRIB's Automated Segmentation Tool (FSL): labels each voxel as grey matter, white matter or CSF |
-| FIRST | FMRIB's Integrated Registration and Segmentation Tool (FSL): outlines the 15 subcortical structures |
-| SIENAX | Structural Image Evaluation using Normalisation of Atrophy, cross-sectional (FSL): estimates head size |
+| FSL | FMRIB Software Library: Free, widely used software for analysing brain scans |
+| BET | Brain Extraction Tool (FSL): Removes the skull and scalp from the image |
+| FAST | FMRIB's Automated Segmentation Tool (FSL): Labels each voxel as grey matter, white matter or CSF |
+| FIRST | FMRIB's Integrated Registration and Segmentation Tool (FSL): Outlines the 15 subcortical structures |
+| SIENAX | Structural Image Evaluation using Normalisation of Atrophy, cross-sectional (FSL): Estimates head size |
 | Voxel | A 3D pixel, the smallest unit of a brain image |
 | cm³ | Cubic centimetres (= millilitres), the unit for volumes |
 
@@ -51,12 +51,12 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 
 | Term | Meaning |
 | --- | --- |
-| QC | Quality control: checking each scan's processing for errors before analysis |
+| QC | Quality control: Checking each scan's processing for errors before analysis |
 | Visual rating (0 / 1 / 2) | Each scan's outlines were rated good (0), minor issue (1, kept) or failure (2, excluded) |
 | Blind rating | Scans were rated under random codes, so age, sex and hospital couldn't influence the rating |
 | Test–retest | 50 scans were rated a second time to check that ratings are consistent |
 | Cohen's kappa | A measure of rating agreement that corrects for agreement by chance (0 = chance, 1 = perfect) |
-| CNR / SNR | Contrast-to-noise and signal-to-noise ratios: measures of image quality (higher = clearer) |
+| CNR / SNR | Contrast-to-noise and signal-to-noise ratios: Measures of image quality (higher = clearer) |
 | Robust z-score | How unusual a value is compared with the others, measured in a way that isn't thrown off by extreme values (MAD = median absolute deviation) |
 
 **Study design and statistics**
@@ -69,12 +69,12 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | Unblinding | Linking the QC ratings to the real data once all rating was finished |
 | Sensitivity analysis | Repeating an analysis with a different reasonable choice (for example, stricter QC) to check the result doesn't depend on it |
 | ComBat | A statistical method that removes differences between scanners while keeping real effects such as age |
-| GAM | Generalized additive model: a regression that fits smooth curves instead of straight lines, used for the lifespan curves (R package mgcv) |
+| GAM | Generalized additive model: A regression that fits smooth curves instead of straight lines, used for the lifespan curves (R package mgcv) |
 | p-value; FDR | The chance of a result at least this strong if there were no real effect; FDR (false discovery rate) correction adjusts p-values when many structures are tested at once |
 | Brain age | The age a model predicts from someone's brain volumes; the brain age gap is predicted minus real age |
 | Ridge regression, random forest, gradient boosting | Three machine-learning model types used to predict age (Python package scikit-learn) |
 | Baseline | A benchmark that predicts the training set’s average age for all participants, without using any brain data. The age-prediction models must perform better than the benchmark to show that brain volume metrics assist the model in predicting age |
-| MAE | Mean absolute error: the average size of a prediction's error, in years |
+| MAE | Mean absolute error: The average size of a prediction's error, in years |
 | Nested cross-validation | Repeatedly training on a sample of the data and testing on the remainder, with model settings tuned only on training data, so the test scores are honest |
 | Leave-one-site-out | Training on two hospitals and testing on the third, to check the model works on an unseen scanner |
 | Bias correction | A standard adjustment for brain age models' tendency to overestimate young participant's age and underestimate older participant's |
@@ -101,12 +101,12 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | 5. Test the code on scrambled data | All analysis code was written and tested on a copy of the data with age, sex and hospital shuffled between participants (blind analysis). |
 | 6. Run the real analysis | Lifespan curves (GAMs), brain age models with nested cross-validation, and a small-sample simulation. |
 
-### Pipeline: scripts and tools
+### Pipeline: Scripts and tools
 
 | Step | Script | Tools |
 | --- | --- | --- |
 | 1. Check demographics, pick a pilot sample | `scripts/01_check_demographics.py` | Python (pandas) |
-| 2. Process T1 scans: reorient, crop, brain extraction, tissue and subcortical segmentation, volumes | `scripts/02_process_t1.sh` | Bash, FSL (BET, FAST, FIRST) |
+| 2. Process T1 scans: Reorient, crop, brain extraction, tissue and subcortical segmentation, volumes | `scripts/02_process_t1.sh` | Bash, FSL (BET, FAST, FIRST) |
 | 3. Automated QC flags and review sheets | `scripts/03_qc_flags.py` | Python (pandas, NumPy, Pillow) |
 | 3b. Rerun FIRST on flagged scans | `scripts/04_rerun_first.sh` | Bash, FSL |
 | 4a. QC images for every scan; image quality (CNR, SNR) | `scripts/05_qc_images_metrics.sh` | Bash, FSL |
@@ -197,7 +197,7 @@ Numbers below come from the main analysis of 545 scans (531 for subcortical stru
 
 ![Subcortical volumes across the lifespan](results/real/fig_lifespan_subcortical.png)
 
-*Exploratory:* the caudate, putamen and accumbens also declined with age (FDR-corrected p < .001). The **pallidum showed no age effect** (p ≈ .5 in both hemispheres); this should be interpreted cautiously, as FIRST segments the pallidum least reliably (3 of the 7 failures in the extreme-volume review). Brainstem volume increased slightly until about 50 and then declined, consistent with its high white-matter content.
+*Exploratory:* The caudate, putamen and accumbens also declined with age (FDR-corrected p < .001). The **pallidum showed no age effect** (p ≈ .5 in both hemispheres); this should be interpreted cautiously, as FIRST segments the pallidum least reliably (3 of the 7 failures in the extreme-volume review). Brainstem volume increased slightly until about 50 and then declined, consistent with its high white-matter content.
 
 ### Brain age model (H5–H6)
 
@@ -232,7 +232,7 @@ The model generalised well to scanners it hadn't been trained on: Accuracy decre
 
 **Exploratory brain-age-gap analyses** (bias-corrected gap from the best model, adjusted for age; `results/real/brainage_exploratory.txt`):
 
-- **Men had a 5.2-year older brain age than women** (95% CI 3.2 to 7.1), with or without ComBat. This is partly a methodological artefact: features were volumes divided by intracranial volume, men's intracranial volume is on average 14% larger, and brain volumes do not scale proportionally with head size. Adding intracranial volume to the model (post hoc; `scripts/16_posthoc_checks.py`) reduced the difference to 2.9 years (0.5 to 5.4), and intracranial volume itself predicted an older brain age (+12.7 years per litre). Roughly 40% of the sex difference therefore reflects head size, and it should not be interpreted as faster brain ageing in men.
+- **Men had a 5.2-year older brain age than women** (95% CI 3.2 to 7.1), with or without ComBat. This is partly a methodological artefact: Features were volumes divided by intracranial volume, men's intracranial volume is on average 14% larger, and brain volumes do not scale proportionally with head size. Adding intracranial volume to the model (post hoc; `scripts/16_posthoc_checks.py`) reduced the difference to 2.9 years (0.5 to 5.4), and intracranial volume itself predicted an older brain age (+12.7 years per litre). Roughly 40% of the sex difference therefore reflects head size, and it should not be interpreted as faster brain ageing in men.
 - **Lower image quality was associated with an older brain age** (CNR, p < .001), supporting the reporting of image quality for every scan.
 - **Age was underestimated in the oldest participants** (mean error 11.2 years over age 80; n = 8), reflecting the regression toward the mean typical of brain age models.
 
@@ -240,7 +240,7 @@ The model generalised well to scanners it hadn't been trained on: Accuracy decre
 
 *In short:* The planned test couldn't show the problem because the grey matter–age effect is too strong; repeating it for all 18 brain measures showed that small studies often miss weaker effects and exaggerate them when they do find them.
 
-**Pre-registered result: criteria met, but uninformative.** The grey matter–age effect was so strong (−2.0 cm³ per year, p ≈ 10⁻¹¹⁸) that even samples of 25 detected it 99.8% of the time, so H7's criteria were technically met but the test hit a ceiling and could not show small-sample bias. The pre-registered simulation is in `results/real/fig_sample_size.png`.
+**Pre-registered result: Criteria met, but uninformative.** The grey matter–age effect was so strong (−2.0 cm³ per year, p ≈ 10⁻¹¹⁸) that even samples of 25 detected it 99.8% of the time, so H7's criteria were technically met but the test hit a ceiling and could not show small-sample bias. The pre-registered simulation is in `results/real/fig_sample_size.png`.
 
 **Exploratory follow-up (added after the H7 result).** The simulation was repeated for all 18 volumes (`scripts/13b_sample_size_all_structures.py`); analysing every volume, rather than one weak effect chosen after the fact, avoids selective reporting.
 
@@ -254,11 +254,11 @@ The model generalised well to scanners it hadn't been trained on: Accuracy decre
 | Hippocampus (L) | −6.1 | 21% | 72% | 2.04× |
 | Amygdala (L) | +3.1 | 7% | 23% | 3.73× |
 
-Weaker effects showed a clear winner's curse. At n = 25, the hippocampus–age effect was detected in about one sample in five, and significant estimates were about twice the full-sample value. For effects near zero in the full sample (pallidum, right amygdala, brainstem), significant results occurred at roughly the 5% false-positive rate and often had the wrong sign. Two limitations: the models are linear, so non-monotonic effects (such as the brainstem) appear weak; and at n = 500 each sample contains almost the entire dataset, so results converge on the full-sample estimate.
+Weaker effects showed a clear winner's curse. At n = 25, the hippocampus–age effect was detected in about one sample in five, and significant estimates were about twice the full-sample value. For effects near zero in the full sample (pallidum, right amygdala, brainstem), significant results occurred at roughly the 5% false-positive rate and often had the wrong sign. Two limitations: The models are linear, so non-monotonic effects (such as the brainstem) appear weak; and at n = 500 each sample contains almost the entire dataset, so results converge on the full-sample estimate.
 
 ## Deviations from pre-registration
 
-*In short:* A pre-registration is only trustworthy if changes to the plan are reported openly. There were eight: seven were made while testing the code on scrambled data, before any real results were seen (for example, correcting a typo in the hospital counts and fixing a rule that could "pass" even with meaningless data), and one was a shorter-than-planned gap before the second round of quality ratings.
+*In short:* A pre-registration is only trustworthy if changes to the plan are reported openly. There were eight: Seven were made while testing the code on scrambled data, before any real results were seen (for example, correcting a typo in the hospital counts and fixing a rule that could "pass" even with meaningless data), and one was a shorter-than-planned gap before the second round of quality ratings.
 
 <details>
 <summary><b>Show all eight deviations</b></summary>
