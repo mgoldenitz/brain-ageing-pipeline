@@ -22,7 +22,8 @@ Volume rules:
     starts from the same file.
 
 Columns: subject, site, sex, age, icv, cnr, snr, gm, wm, csf, the 15 FIRST structures,
-first_source (rerun / original), qc_wb, qc_sc, qc_wb_first, qc_sc_first, shuffled.
+first_source (rerun / original), qc_wb, qc_sc, qc_wb_first, qc_sc_first, volume_review_fail,
+shuffled. (Real data: confirmed failures from data/qc_volume_review.csv have qc_sc = 2.)
 """
 
 from pathlib import Path
@@ -89,6 +90,25 @@ else:
                  "Before then, use:  python3 scripts/09_build_dataset.py --shuffled")
     qc = pd.read_csv(qc_file)
     d = d.merge(qc[["subject", "qc_wb", "qc_sc", "qc_wb_first", "qc_sc_first"]], on="subject", how="left")
+    # Review of extreme-volume scans (scripts/14b_volume_flag_review.py): a confirmed FIRST
+    # failure sets the subcortical rating to 2 in both the reviewed and first-pass ratings
+    # (subcortical volumes missing, whole-brain volumes kept - exclusion rule 3).
+    review_file = DATA / "qc_volume_review.csv"
+    d["volume_review_fail"] = False
+    if review_file.exists():
+        rv = pd.read_csv(review_file, dtype=str).fillna("")
+        rv["decision"] = rv["decision"].str.strip().str.lower()
+        bad = rv[~rv["decision"].isin(["keep", "fail"])]
+        if len(bad):
+            sys.exit(f"data/qc_volume_review.csv: {len(bad)} rows without a keep/fail decision "
+                     f"(first: {bad['subject'].iloc[0]}). Finish the review first.")
+        fail = d["subject"].isin(rv.loc[rv["decision"] == "fail", "subject"])
+        d["volume_review_fail"] = fail
+        d.loc[fail, ["qc_sc", "qc_sc_first"]] = 2
+        print(f"Volume-flag review: {len(rv)} scans reviewed, {int(fail.sum())} confirmed FIRST failures "
+              f"-> subcortical rating set to 2")
+    else:
+        sys.exit("data/qc_volume_review.csv not found. Run scripts/14b_volume_flag_review.py and fill it in first.")
     out = DATA / "analysis_dataset.csv"
 
 d["shuffled"] = SHUFFLED
