@@ -33,7 +33,7 @@ for a_, col, title in [(ax[0], "pred", "Predicted age (uncorrected)"),
     a_.scatter(subj.age, subj[col], s=8, alpha=0.5, color="#2f6db5")
     a_.plot(lim, lim, color="grey", lw=1, ls="--")
     a_.set(xlim=lim, ylim=lim, xlabel="Age (years)", ylabel="Predicted age (years)",
-           title=f"{title}\n{NAMES[best_model]}, primary analysis")
+           title=f"{title}\n{NAMES[best_model]}, Primary Analysis")
 s = summary[summary.analysis == "primary"].set_index("model").loc[list(NAMES)]
 ax[2].bar([NAMES[m] for m in s.index], s["mae"], color=["#999999"] + ["#2f6db5"] * 3)
 ax[2].set(ylabel="Mean absolute error (years)", title="Cross-validated MAE, uncorrected")
