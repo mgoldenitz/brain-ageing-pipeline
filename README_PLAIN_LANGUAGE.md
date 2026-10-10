@@ -118,7 +118,7 @@ These checks were added after the main results were known, so they weren't part 
 
 ![What the model relied on](results/real/fig_feature_importance.png)
 
-*Left: How much worse the model gets when each measurement is scrambled; longer bars matter more. Right: How the model's predicted age changes as each of the four most useful measurements changes.*
+*Left: How much worse the model gets when each measurement is scrambled; longer bars matter more. Right: How the model's predicted age changes with the two measurements it relies on most: less grey matter and more CSF both mean an older predicted age.*
 
 ## Checking the quality of the measurements
 
