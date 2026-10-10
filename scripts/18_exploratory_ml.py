@@ -275,26 +275,27 @@ for v in top:
 report.append("")
 print("  4. partial dependence done", flush=True)
 
-fig = plt.figure(figsize=(14, 6.2))
-gs = fig.add_gridspec(2, 4, width_ratios=[1.5, 0.12, 1, 1], wspace=0.35, hspace=0.55)
-ax = fig.add_subplot(gs[:, 0])
+fig = plt.figure(figsize=(14, 5.4))
+gs = fig.add_gridspec(1, 4, width_ratios=[1.5, 0.1, 1, 1], wspace=0.35)
+ax = fig.add_subplot(gs[0, 0])
 s = imp_sum.iloc[::-1]
 ax.barh([PRETTY[v] for v in s.index], s.importance_mean, xerr=s.importance_sd, color="#2f6db5",
         ecolor="#9ca3af", capsize=2)
 ax.axvline(0, color="grey", lw=0.8)
 ax.set(xlabel="Increase in MAE when shuffled (years)",
        title=f"Permutation importance\n{NAMES[best]}, held-out folds")
-lo = min(p[1].min() for p in pdp.values()) - 2           # one shared y scale, so effect sizes compare
-hi = max(p[1].max() for p in pdp.values()) + 2
-for i, v in enumerate(top):
-    a = fig.add_subplot(gs[i // 2, 2 + i % 2])
+shown = top[:2]                                           # the two volumes the model relies on
+lo = min(pdp[v][1].min() for v in shown) - 2              # one shared y scale
+hi = max(pdp[v][1].max() for v in shown) + 2
+for i, v in enumerate(shown):
+    a = fig.add_subplot(gs[0, 2 + i])
     g, avg = pdp[v]
     a.plot(g, avg, color="#2f6db5", lw=2)
     a.set_ylim(lo, hi)
     a.plot(np.percentile(X[v] * 100, np.arange(10, 100, 10)), np.full(9, lo + 0.8), "|",
            color="#6b7280", ms=8)
-    a.set(title=PRETTY[v], xlabel="% of intracranial volume", ylabel="Predicted age (years)")
-fig.text(0.70, 0.98, "Partial dependence (top four volumes, same scale)", ha="center", va="top", fontsize=12)
+    a.set(title=f"Partial dependence: {PRETTY[v]}", xlabel="% of intracranial volume",
+          ylabel="Predicted age (years)")
 fig.suptitle("EXPLORATORY (post-hoc)" + (" - QUICK TEST" if QUICK else ""), x=0.01, ha="left",
              fontsize=9, color="#6b7280")
 fig.savefig(OUT / "fig_feature_importance.png", dpi=150, bbox_inches="tight")
