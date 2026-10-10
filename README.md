@@ -83,7 +83,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 
 - **Brain volume decreases with age steadily from 20 to 86.** Grey matter decreases by about 20 cm³ (3.5%) per decade. White matter peaks in the late 30s and then declines, and cerebrospinal fluid (CSF) increases twice as fast after 60. The **hippocampus**, central to memory, is stable until about 60 and then loses about 8% per decade.
 - **A machine-learning model can estimate age from 18 brain volumes to within 7.4 years on average**. This is around half the error of randomly measuring the mean age. The model is also accurate at estimating age of brain scans from hospitals it has never been trained on.
-- **Small studies produce misleading results.** With 25 participants, a real hippocampus–age effect is found in only about 20% of participants and the is 2x the effect found by the model.
+- **Small studies produce misleading results.** With 25 participants, a real hippocampus–age effect is detected in only about 20% of studies, and when it is, its size is overestimated about twofold.
 - **The analysis was pre-registered and run blind.** Quality control was rated without knowing which participant and hospital the scan is assigned to, and all code was tested on a randomized sample of the data before the real results were viewed. Every result is reported.
 
 ## Pipeline
@@ -104,6 +104,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | 5b. QC rules and ComBat harmonisation for each analysis | `scripts/10_harmonise.py` | Python (neuroCombat) |
 | 6. Lifespan models, H1–H4 | `scripts/11_lifespan_gams.R` | R (mgcv, ggplot2) |
 | 7. Brain age model, H5–H6 | `scripts/12_brain_age.py` | Python (scikit-learn, statsmodels) |
+| 7b. Redraw the brain age figure from saved results | `scripts/12b_brainage_figure.py` | Python (matplotlib) |
 | 8. Sample size and the winner's curse, H7 | `scripts/13_sample_size.py` | Python (NumPy, SciPy, matplotlib) |
 | 8b. Exploratory: H7 simulation for all 18 volumes | `scripts/13b_sample_size_all_structures.py` | Python (NumPy, SciPy, matplotlib) |
 | 9. SQLite database and example queries | `scripts/15_build_database.py`, `sql/` | Python (sqlite3), SQL |
