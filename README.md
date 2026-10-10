@@ -213,9 +213,7 @@ The model generalised well to unseen scanners: accuracy decreased slightly only 
 
 ### Sample size and the winner's curse (H7)
 
-**Pre-registered result: criteria met, but uninformative.** The grey matter–age effect was so strong (−2.0 cm³ per year, p ≈ 10⁻¹¹⁸) that samples of 25 detected it 99.8% of the time, and significant small samples overestimated it by only 0.1%. Both criteria were technically met (detection 0.998 to 1.000; exaggeration 1.001 to 1.000), but the differences are negligible: the effect is at a ceiling, so the test could not demonstrate small-sample bias.
-
-![Pre-registered H7 simulation](results/real/fig_sample_size.png)
+**Pre-registered result: criteria met, but uninformative.** The grey matter–age effect was so strong (−2.0 cm³ per year, p ≈ 10⁻¹¹⁸) that even samples of 25 detected it 99.8% of the time, so H7's criteria were technically met but the test hit a ceiling and could not show small-sample bias. The pre-registered simulation is in `results/real/fig_sample_size.png`.
 
 **Exploratory follow-up (added after the H7 result).** The simulation was repeated for all 18 volumes (`scripts/13b_sample_size_all_structures.py`); analysing every volume, rather than one weak effect chosen after the fact, avoids selective reporting.
 
