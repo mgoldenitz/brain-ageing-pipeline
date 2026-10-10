@@ -9,7 +9,8 @@ queries (sql/example_queries.sql).
       REAL (after unblinding): needs data/analysis_dataset.csv -> data/brain_ageing.db
 
 Tables: sites, participants, scans, structures, volumes (long format), qc_auto,
-qc_ratings (coded, never linked to subjects), qc_final, build_info.
+qc_ratings (coded, never linked to subjects), qc_final (including the extreme-volume review
+failures, real data only), build_info.
 Views: v_scan_wide, v_volumes_qc, v_site_summary.
 Query results are saved to results/<shuffled|real>/sql_example_queries.txt.
 Open the .db file in DB Browser for SQLite (free) to explore it with a point-and-click interface.
@@ -69,6 +70,7 @@ head = pd.read_csv(DATA / "head_size.csv")[["subject", "vscaling"]]
 auto = pd.read_csv(DATA / "qc_auto.csv")[["subject", "qc_auto", "qc_reasons"]]   # flags only
 
 DB.unlink(missing_ok=True)
+Path(str(DB) + "-journal").unlink(missing_ok=True)   # leftover from an interrupted build
 con = sqlite3.connect(DB)
 con.execute("PRAGMA foreign_keys = ON")
 con.executescript((SQL / "schema.sql").read_text())
@@ -108,11 +110,16 @@ for file, rs, ps in [("qc_ratings_practice.csv", "practice", "first"),
                      ("qc_ratings_retest.csv", "retest", "first")]:
     con.executemany("INSERT INTO qc_ratings VALUES (?, ?, ?, ?, ?, ?, ?)", coded(file, rs, ps))
 
+# Real data: analysis_dataset.csv already carries the extreme-volume review (scripts/14b), with
+# confirmed FIRST failures set to subcortical 2; volume_review_fail records which ones.
+if "volume_review_fail" not in d:
+    d["volume_review_fail"] = False
 qc = d[["subject", "qc_wb", "qc_sc", "qc_wb_first", "qc_sc_first"]].astype(object)
 qc = qc.where(qc.notna(), None)
 for c in ["qc_wb", "qc_sc", "qc_wb_first", "qc_sc_first"]:
     qc[c] = qc[c].map(lambda v: None if v is None else int(v))
-con.executemany("INSERT INTO qc_final VALUES (?, ?, ?, ?, ?)", qc.itertuples(index=False))
+qc["volume_review_fail"] = d["volume_review_fail"].astype(str).str.lower().isin(["true", "1"]).astype(int).to_numpy()
+con.executemany("INSERT INTO qc_final VALUES (?, ?, ?, ?, ?, ?)", qc.itertuples(index=False))
 
 con.executemany("INSERT INTO build_info VALUES (?, ?)", [
     ("mode", "SHUFFLED (blind analysis: age, sex, site and QC ratings shuffled)" if SHUFFLED else "real"),
