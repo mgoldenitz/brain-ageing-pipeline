@@ -4,18 +4,18 @@
 
 ## What this project asked
 
-1. **How does the brain change as adults get older?** How much do grey matter, white matter, the fluid around the brain and key deep-brain structures shrink or grow between age 20 and 86?
-2. **Can a computer guess someone's age from a brain scan?** And does it still work on scans from a hospital it has never seen?
-3. **Do small studies give misleading answers?** If a study only had 25 people, how often would it find these age effects, and how accurate would its estimates be?
+1. **How does the brain change as adults get older?** How much do grey matter, white matter, cerebrospinal fluid (CSF) and deep-brain structures shrink or grow between age 20 and 86?
+2. **Can a machine learning model accurately predict someone's age from a brain scan?** And does it still work on scans from a hospital it has never seen?
+3. **Do small studies produce misleading results?** If a study only had 25 participants, how often would it find these age effects, and how accurate would its estimates be?
 
 To answer these, I analysed 563 publicly available brain MRI scans of healthy adults from three London hospitals.
 
 ## The main findings
 
-- **The brain gradually loses volume with age.** Grey matter (the brain's "processing" tissue) shrank steadily, by about 3.5% every ten years. White matter (the "wiring" between regions) held steady until the late 30s, then declined, especially after 60. The fluid-filled spaces inside the skull grew to fill the gap, about twice as fast after 60.
+- **The brain gradually loses volume with age.** Grey matter (the brain's "processing" tissue) shrank steadily, by about 3.5% every ten years. White matter (the "wiring" between regions) held steady until the late 30s, then declined, especially after 60. CSF grew to fill the gap, about twice as fast after 60.
 - **The hippocampus, a structure central to memory, stayed stable until about 60**, then shrank by about 8% per decade.
-- **A computer model estimated people's ages from their brain measurements to within about 7.4 years on average.** That is half the error of simply guessing the average age for everyone. It worked just as well on scans from a hospital it had never been trained on.
-- **Small studies can be misleading.** With only 25 people, a real link between age and hippocampus size would be found only about 1 time in 5, and when it was found, its size would be exaggerated about twofold.
+- **A computer model estimated participant's age from their brain measurements to within 7.4 years on average.** That is half the error of simply guessing the average age for everyone. It worked just as well on scans from a hospital it had never been trained on.
+- **Small studies can be misleading.** With only 25 participants, a real correlation between age and hippocampus size would be found in about 20% of the sample, and when it was found, its size would be exaggerated about twofold.
 
 ## How the study was done
 
@@ -52,9 +52,9 @@ Every result stayed the same when I re-ran the analysis in different reasonable 
 
 - **Grey matter:** lost about 20 cm³ (3.5%) every decade, in an almost straight line, about 134 cm³ in total from age 20 to 86.
 - **White matter:** peaked around age 37, then declined, slowly at first and about five times faster after 60.
-- **Fluid (cerebrospinal fluid, CSF):** rose throughout adulthood, roughly twice as fast after 60.
-- **Hippocampus (memory):** stable until about 60, then lost about 8% per decade on each side.
-- **Thalamus (a relay station for senses):** shrank throughout adulthood, faster after 60.
+- **CSF:** rose throughout adulthood, roughly twice as fast after 60.
+- **Hippocampus:** stable until about 60, then lost about 8% per decade on each side.
+- **Thalamus:** shrank throughout adulthood, faster after 60.
 
 ![How deep-brain structures change with age](results/real/fig_lifespan_subcortical.png)
 
@@ -85,7 +85,7 @@ Other deep-brain structures involved in movement and reward (caudate, putamen, a
 
 ## Do small studies mislead? (H7)
 
-**The planned test didn't tell us much.** The link between age and grey matter is so strong that even studies of 25 people found it 99.8% of the time, so there was no room to show that small studies struggle.
+**The planned test didn't tell us much.** The link between age and grey matter is so strong that even studies of 25 participants found it 99.8% of the time, so there was no room to show that small studies struggle.
 
 **So I repeated the simulation for all 18 brain measures**, including ones with much weaker age effects. To avoid cherry-picking, I ran it on every measure rather than choosing one that would make a good story.
 

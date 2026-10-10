@@ -26,7 +26,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | --- | --- |
 | Grey matter | Brain tissue made mostly of nerve cell bodies, where information is processed |
 | White matter | Bundles of nerve fibres that carry signals between brain regions |
-| Cerebrospinal fluid (CSF) | Fluid in and around the brain; its volume grows as brain tissue shrinks |
+| CSF | Fluid in and around the brain; its volume grows as brain tissue shrinks |
 | Subcortical structures | Groups of grey matter deep inside the brain: thalamus (relays sensory signals), caudate, putamen and pallidum (movement and coordination), accumbens (reward), hippocampus (memory), amygdala (emotion) and brainstem (connects brain and spinal cord). L and R = left and right |
 | Intracranial volume (ICV) | Total volume inside the skull; used to adjust for head size |
 | Atrophy | Shrinkage of brain tissue |
@@ -36,7 +36,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | Term | Meaning |
 | --- | --- |
 | MRI | Magnetic resonance imaging: a scanner that uses magnetic fields to image the body without radiation |
-| T1 scan (T1-weighted) | A type of MRI scan that shows grey matter, white matter and fluid with good contrast, used to measure brain structure |
+| T1 scan (T1-weighted) | A type of MRI scan that shows grey matter, white matter and CSF with good contrast, used to measure brain structure |
 | IXI | Information eXtraction from Images: the open-access dataset of about 600 healthy adults' scans used here, from Guy's Hospital (Guy's), Hammersmith Hospital (HH) and the Institute of Psychiatry (IOP) in London |
 | Site | The hospital where a scan was taken; each used a different scanner |
 | FSL | FMRIB Software Library: free, widely used software for analysing brain scans |
@@ -65,7 +65,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | --- | --- |
 | Pre-registration | Writing down the hypotheses and analysis plan before seeing the results, so they can't be changed to fit the data |
 | Deviation | A change from the pre-registered plan, reported with its reason |
-| Blind analysis / shuffled data | All code was written and tested on a copy of the data with age, sex and hospital shuffled between people, so no real result could steer it |
+| Blind analysis / shuffled data | All code was written and tested on a copy of the data with age, sex and hospital shuffled between participants, so no real result could steer it |
 | Unblinding | Linking the QC ratings to the real data once all rating was finished |
 | Sensitivity analysis | Repeating an analysis with a different reasonable choice (for example, stricter QC) to check the result doesn't depend on it |
 | ComBat | A statistical method that removes differences between scanners while keeping real effects such as age |
@@ -77,7 +77,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | MAE | Mean absolute error: the average size of a prediction's error, in years |
 | Nested cross-validation | Repeatedly training on a sample of the data and testing on the remainder, with model settings tuned only on training data, so the test scores are honest |
 | Leave-one-site-out | Training on two hospitals and testing on the third, to check the model works on an unseen scanner |
-| Bias correction | A standard adjustment for brain age models' tendency to overestimate young people's age and underestimate older people's |
+| Bias correction | A standard adjustment for brain age models' tendency to overestimate young participant's age and underestimate older participant's |
 | Detection rate | The share of simulated studies that find an effect (p < .05); also called statistical power |
 | Winner's curse | Small studies that do find an effect tend to overestimate its size |
 
@@ -98,7 +98,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | 2. Measure the brain | FSL removed the skull from each image, labelled grey matter, white matter and CSF, and outlined 15 subcortical structures, which were then measured in cm³. |
 | 3. Write the plan first | Seven hypotheses and the exact tests were pre-registered in [PREREGISTRATION.md](PREREGISTRATION.md) before any analysis. |
 | 4. Check quality, blind | Every scan's processing was rated by eye under random codes, so age, sex and hospital were unknown during rating. |
-| 5. Test the code on scrambled data | All analysis code was written and tested on a copy of the data with age, sex and hospital shuffled between people (blind analysis). |
+| 5. Test the code on scrambled data | All analysis code was written and tested on a copy of the data with age, sex and hospital shuffled between participants (blind analysis). |
 | 6. Run the real analysis | Lifespan curves (GAMs), brain age models with nested cross-validation, and a small-sample simulation. |
 
 ### Pipeline: scripts and tools
@@ -201,7 +201,7 @@ Numbers below come from the main analysis of 545 scans (531 for subcortical stru
 
 ### Brain age model (H5–H6)
 
-*In short:* a computer model estimated people's ages from 18 brain measurements to within about 7.4 years on average, half the error of guessing the average age for everyone, and it worked about as well on scans from a hospital it had never seen.
+*In short:* a computer model estimated participant's age from 18 brain measurements to within about 7.4 years on average, half the error of guessing the average age for everyone, and it worked about as well on scans from a hospital it had never seen.
 
 ![Brain age predictions](results/real/fig_brainage.png)
 
