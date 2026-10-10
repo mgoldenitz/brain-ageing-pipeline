@@ -120,18 +120,18 @@ Rating rules are in [QC_RATING_GUIDE.md](QC_RATING_GUIDE.md). The SQLite databas
 
 ## Quality control after unblinding (8 October 2026)
 
-**Rating reliability.** 50 randomly chosen scans were rated again under new codes, 2 days after the main rating and compared with the main ratings using Cohen's kappa:
+**Rating reliability.** 50 randomly chosen scans were re-rated under new codes 2 days after the main rating:
 
 | Rating | Exact agreement | Kappa (linear-weighted) | Fail vs keep agreement |
 | --- | --- | --- | --- |
 | Whole brain | 64% | 0.22 (0.22) | 96% |
 | Subcortical | 72% | 0.46 (0.47) | 98% |
 
-The decision that changes the analysis, fail (2) versus keep (0 or 1), was highly consistent. The line between "good" (0) and "minor issue" (1) was not; both are kept, so that disagreement doesn't affect any analysis, but the 0/1 distinction shouldn't be treated as reliable (it is only used in the "exclude 1s" sensitivity analysis).
+Fail-versus-keep decisions, which determine exclusions, were highly consistent (96–98%); the distinction between "good" (0) and "minor issue" (1) was not, but both are retained, so it affects only the "exclude 1s" sensitivity analysis.
 
-**Visual vs automatic QC.** 14 of the 18 whole-brain failures had passed the automatic flags, so the visual rating was needed. All 6 subcortical failures from the rating were among the 50 scans the automatic flags had sent for subcortical review. Failed scans had lower image quality (median within-site CNR z −0.54 vs 0.08 for scans rated 0). Four scans from Guy's Hospital with very low CNR or SNR were rated 0 or 1 and kept, since image quality is reported but not used to exclude (pre-registration, rule 4).
+**Visual vs automatic QC.** 14 of the 18 whole-brain failures had passed the automatic flags, confirming the need for visual rating. Failed scans had lower image quality (median within-site CNR z −0.54 vs 0.08), and four low-quality Guy's scans rated 0 or 1 were retained, as image quality is not an exclusion criterion (rule 4).
 
-**Review of extreme volumes.** The pre-registration's core rule is that a flag only triggers review, and a scan is excluded only for a confirmed processing failure. After unblinding, 11 scans rated 0 or 1 had a subcortical volume more than 5 robust z from the median. The rating snapshots colour each hemisphere in a single shade, which makes errors such as a pallidum spreading into the putamen difficult to view, so these scans were redrawn with each structure outlined in its own colour (`scripts/14b_volume_flag_review.py`) and judged with the subcortical "fail" rule from the rating guide: fail only if the outline clearly leaves the structure; an unusual size alone is not a failure. The review saw subject IDs and volumes but no ages, sexes or results, and was finished before any outcome analysis. Decisions are in `data/qc_volume_review.csv`:
+**Review of extreme volumes.** As pre-registered, flags trigger review rather than automatic exclusion. After unblinding, 11 scans rated 0 or 1 had a subcortical volume more than 5 robust z from the median. Because the rating snapshots showed each hemisphere in one colour, these scans were redrawn with each structure outlined separately (`scripts/14b_volume_flag_review.py`) and failed only if the outline clearly left the structure. The review saw subject IDs and volumes but no ages, sexes or results (`data/qc_volume_review.csv`):
 
 - **Fail (7):** The outline clearly leaves the structure. Pallidum in IXI131, IXI483 and IXI527; hippocampus and brainstem in IXI094 and IXI292; brainstem in IXI056; amygdala in IXI586.
 - **Keep (4):** IXI482, IXI204 and IXI470 (large pallidum) and IXI072 (small right hippocampus); the outlines follow the visible anatomy.
