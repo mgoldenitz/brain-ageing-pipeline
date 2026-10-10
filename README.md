@@ -101,6 +101,10 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | 5. Test the code on scrambled data | All analysis code was written and tested on a copy of the data with age, sex and hospital shuffled between participants (blind analysis). |
 | 6. Run the real analysis | Lifespan curves (GAMs), brain age models with nested cross-validation, and a small-sample simulation. |
 
+![Processing steps](results/real/fig_pipeline_steps.png)
+
+*The processing steps on one axial slice (above the eyes) of a single scan: the T1 image, the skull removed (BET), each voxel labelled as CSF, grey matter or white matter (FAST), and the subcortical structures outlined (FIRST).*
+
 ### Pipeline: Scripts and tools
 
 | Step | Script | Tools |
@@ -124,6 +128,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | 8b. Exploratory: H7 simulation for all 18 volumes | `scripts/13b_sample_size_all_structures.py` | Python (NumPy, SciPy, matplotlib) |
 | 9. SQLite database and example queries | `scripts/15_build_database.py`, `sql/` | Python (sqlite3), SQL |
 | 10. Post-hoc checks (baseline choice, head size and the sex effect) | `scripts/16_posthoc_checks.py` | Python (statsmodels) |
+| 11. Brain image figures (processing steps; good vs failed segmentation) | `scripts/17_brain_image_figures.py` | Python (nibabel, matplotlib) |
 
 Rating rules are in [QC_RATING_GUIDE.md](QC_RATING_GUIDE.md). The SQLite database (step 9) is a supporting extra and isn't part of the pre-registered analysis.
 
@@ -154,6 +159,10 @@ Fail-versus-keep decisions, which determine exclusions, were highly consistent (
 
 - **Fail (7):** The outline clearly leaves the structure. Pallidum in IXI131, IXI483 and IXI527; hippocampus and brainstem in IXI094 and IXI292; brainstem in IXI056; amygdala in IXI586.
 - **Keep (4):** IXI482, IXI204 and IXI470 (large pallidum) and IXI072 (small right hippocampus); the outlines follow the visible anatomy.
+
+![Good vs failed subcortical segmentation](results/real/fig_qc_good_vs_failed.png)
+
+*Skull-stripped slices through the pallidum. Left: A scan rated good; the outlines follow the anatomy. Right: One of the seven failures confirmed in the review; the pallidum outline (yellow) spreads over neighbouring tissue, giving a volume about 2.7 times the median. Its subcortical volumes were removed; its whole-brain volumes were kept.*
 
 Confirmed failures have their subcortical rating set to 2 (subcortical volumes missing, whole-brain volumes kept). This is applied to both the reviewed and first-pass ratings, so the first-pass sensitivity analysis doesn't reintroduce known segmentation failures.
 

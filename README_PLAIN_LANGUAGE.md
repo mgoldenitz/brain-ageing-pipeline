@@ -28,6 +28,10 @@ To answer these, I analysed 563 publicly available brain MRI scans of healthy ad
 | 5. Test the code on scrambled data | All analysis code was written and tested on a copy of the data where ages were shuffled between participants, so no real result could influence how the code was written. |
 | 6. Run the real analysis | Fitted smooth "lifespan curves" for each brain measure, trained age-prediction models, and ran a simulation of small studies. |
 
+![Processing steps](results/real/fig_pipeline_steps.png)
+
+*The same slice of one brain scan at each step: the original scan, the skull removed, the brain labelled as fluid (blue), grey matter and white matter, and the deep-brain structures outlined in colour.*
+
 Each step is a script in the `scripts/` folder; the technical README lists them all.
 
 ## The seven predictions and what happened
@@ -110,6 +114,10 @@ Brain-imaging software sometimes makes mistakes, such as outlining the wrong are
 - **Consistency check:** 50 scans were rated a second time. Decisions about whether a scan failed matched 96–98% of the time. Telling "good" from "minor issue" was less consistent, but both are kept in the analysis, so it doesn't affect the main results.
 - **Visual checks caught what automatic checks missed:** 14 of the 18 failed scans had passed the software's automatic warnings.
 - **Unusual measurements were double-checked:** 11 scans with extreme measurements were redrawn and reviewed. 7 were confirmed software errors and 4 were left in, because the outlines matched the real anatomy (an unusual size alone isn't an error).
+
+![Good vs failed outline](results/real/fig_qc_good_vs_failed.png)
+
+*Left: A scan where the software outlined each deep-brain structure correctly. Right: One of the confirmed errors; the outline of the pallidum (yellow) spills well beyond the real structure. This scan's deep-brain measurements were removed, but its whole-brain measurements were kept.*
 
 | Hospital | Scans | Removed completely | Kept | Kept, but deep-brain measurements removed |
 | --- | --- | --- | --- | --- |
