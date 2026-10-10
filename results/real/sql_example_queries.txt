@@ -1,0 +1,77 @@
+EXAMPLE QUERIES - REAL DATA
+
+1. Sample by site (uses the v_site_summary view)
+site_code                        hospital scanner  scans  mean_age  min_age  max_age  pct_female  mean_cnr  mean_snr
+     Guys          Guy's Hospital, London Philips    314      50.8     20.1     86.2        55.7      3.04      17.7
+       HH    Hammersmith Hospital, London Philips    181      47.4     20.2     81.9        51.9      2.33      10.4
+      IOP Institute of Psychiatry, London      GE     68      42.4     20.0     86.3        64.7      1.80       8.9
+
+2. QC exclusions by site (pre-registration exclusion rules 1 and 3)
+site_code  scans  rule1_excluded  rule3_subcortical_missing  rated_minor_issue  first_pass_excluded
+     Guys    314              12                          5                217                   46
+       HH    181               6                          6                115                   23
+      IOP     68               0                          2                 59                    3
+    Total    563              18                         13                391                   72
+
+3. Automatic QC flags vs blind visual ratings (cross-tabulation)
+    automatic_flag  scans  visual_whole_brain_fail  visual_subcortical_fail  visual_both_good
+              pass    512                       14                        3               147
+review_subcortical     50                        4                       10                10
+            review      1                        0                        0                 0
+
+4. How the second QC pass changed the ratings (coded ratings, no subject IDs)
+first_pass  reviewed  scans
+         0         0    293
+         1         1    193
+         2         1     54
+         2         2     18
+   unrated         0      5
+
+5. Head size by sex and site (mean intracranial volume, litres)
+   sex site_code  scans  mean_icv_l  min_icv_l  max_icv_l
+female      Guys    175       1.281      0.993      1.657
+female        HH     94       1.253      0.999      1.597
+female       IOP     44       1.246      1.001      1.518
+  male      Guys    139       1.458      1.158      1.751
+  male        HH     87       1.422      1.174      1.705
+  male       IOP     24       1.437      1.165      1.780
+
+6. Left-right asymmetry of each subcortical structure (CTE + self-join)
+structure  scans  mean_asymmetry  sd_asymmetry  min_asym  max_asym
+     Accu    562           0.234         0.252    -0.535     1.273
+     Amyg    562           0.034         0.176    -0.645     0.729
+     Hipp    562          -0.018         0.113    -0.587     0.939
+     Pall    562          -0.018         0.076    -0.239     0.282
+     Caud    562          -0.036         0.071    -0.609     0.417
+     Puta    562          -0.004         0.069    -0.312     0.482
+     Thal    562           0.030         0.031    -0.081     0.126
+
+7. Lowest and highest 1% of hippocampal volume, relative to head size, within each site
+         subject site_code  hipp_per_litre_icv  percentile_in_site  subcortical_rating
+IXI639-Guys-1088      Guys               3.470                   1                   1
+IXI041-Guys-0706      Guys               3.500                   1                   2
+IXI607-Guys-1097      Guys               3.663                   1                   1
+IXI489-Guys-1014      Guys               3.855                   1                   1
+IXI400-Guys-0977      Guys               6.970                 100                   1
+IXI227-Guys-0813      Guys               6.979                 100                   0
+IXI621-Guys-1100      Guys               6.986                 100                   0
+  IXI094-HH-1355        HH               1.900                   1                   2
+  IXI072-HH-2324        HH               2.956                   1                   1
+  IXI601-HH-2700        HH               7.168                 100                   0
+ IXI292-IOP-0877       IOP               2.242                   1                   2
+
+8. Image quality vs whole-brain rating (does lower CNR go with failed scans?)
+ whole_brain_rating  scans  mean_cnr  mean_snr
+                  0    298      2.70      14.4
+                  1    247      2.62      14.2
+                  2     18      2.69      14.7
+
+9. Brain volumes by age decade after QC rules (descriptive; outcome data - real database only)
+ decade  scans  mean_gm_cm3  mean_wm_cm3  mean_csf_cm3
+     20    101        622.6        561.5         237.5
+     30     99        606.3        567.2         247.0
+     40     89        583.1        553.7         252.2
+     50     98        548.5        527.9         255.5
+     60    107        529.4        509.4         280.2
+     70     43        508.6        497.6         294.7
+     80      8        514.5        481.8         332.9
