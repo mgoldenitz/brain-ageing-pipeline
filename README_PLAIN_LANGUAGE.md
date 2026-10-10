@@ -5,7 +5,7 @@
 ## What this project asked
 
 1. **How does the brain change as adults get older?** How much do grey matter, white matter, cerebrospinal fluid (CSF) and deep-brain structures shrink or grow between age 20 and 86?
-2. **Can a machine learning model accurately predict someone's age from a brain scan?** And does it still work on scans from a hospital it has never seen?
+2. **Can a machine learning model accurately predict someone's age from a brain scan?** If so, does it still work on scans from a hospital it has never seen?
 3. **Do small studies produce misleading results?** If a study only had 25 participants, how often would it find these age effects, and how accurate would its estimates be?
 
 To answer these, I analysed 563 publicly available brain MRI scans of healthy adults from three London hospitals.
@@ -83,7 +83,7 @@ Other deep-brain structures involved in movement and reward (caudate, putamen, a
 
 **Extra findings (not part of the original predictions):**
 
-- **Men's brains looked about 5 years "older" than women's.** But part of this is a side effect of the method. The model adjusts each measurement for head size, men's heads are larger on average, and brain parts don't scale exactly with head size. After accounting for this, the difference dropped to about 3 years. It shouldn't be read as men's brains ageing faster.
+- **Men's brains looked about 5 years "older" than women's.** However, part of this is a side effect of the method. The model adjusts each measurement for head size, men's heads are larger on average, and brain parts don't scale exactly with head size. After accounting for this, the difference dropped to about 3 years. It shouldn't be read as men's brains ageing faster.
 - **Lower-quality scans made brains look older**, which is why image quality was recorded for every scan.
 - **The model underestimated the ages of the oldest participants** (over 80, by about 11 years), a known weakness of these models, though only 8 participants were in that age group.
 
@@ -91,7 +91,7 @@ Other deep-brain structures involved in movement and reward (caudate, putamen, a
 
 **The planned test didn't tell us much.** The link between age and grey matter is so strong that even studies of 25 participants found it 99.8% of the time, so there was no room to show that small studies struggle.
 
-**So I repeated the simulation for all 18 brain measures**, including ones with much weaker age effects. To avoid cherry-picking, I ran it on every measure rather than choosing one that would make a good story.
+**I therefore repeated the simulation for all 18 brain measures**, including ones with much weaker age effects. To avoid cherry-picking, I ran it on every measure rather than choosing one that would make a good story.
 
 ![Small-study simulation for every brain measure](results/real/fig_sample_size_all_structures.png)
 

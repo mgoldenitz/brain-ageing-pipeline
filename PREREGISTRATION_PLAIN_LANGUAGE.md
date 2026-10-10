@@ -61,7 +61,7 @@ I also planned to explore, without firm predictions, whether men and women diffe
 
 ## How each question will be analysed
 
-**How the brain changes with age (H1–H4).** For each brain measure, a flexible curve is fitted across age, rather than forcing a straight line, using a method called a generalized additive model (GAM). This shows where volume peaks and whether decline speeds up after 60. Because 15 deep-brain structures are tested, results are adjusted so that some don't look significant purely by chance.
+**How the brain changes with age (H1–H4).** For each brain measure, a flexible curve is fitted across age, rather than forcing a straight line, using a method called a generalized additive model (GAM). This shows where volume peaks and whether decline speeds up after 60. Results for the 15 deep-brain structures are adjusted for the number of tests, so that some don't look significant purely by chance.
 
 **Estimating age from the brain (H5–H6).**
 1. The model is given the 18 brain measurements, each adjusted for head size.
