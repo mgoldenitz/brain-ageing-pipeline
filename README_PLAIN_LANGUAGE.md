@@ -25,7 +25,7 @@ To answer these, I analysed 563 publicly available brain MRI scans of healthy ad
 | 2. Measure the brain | Used FSL, standard brain-imaging software, to remove the skull from each image, label grey matter, white matter and fluid, and outline 15 deep-brain structures. Each was then measured in cubic centimetres (cm³). |
 | 3. Write the plan first | Before looking at any results, I wrote down seven predictions and exactly how I would test them (a **pre-registration**). This stops results from being "fished for" afterwards. |
 | 4. Check quality, blind | I looked at every scan's measurements to catch software errors. Scans were shown under random codes, so I couldn't know anyone's age, sex or hospital while judging them. |
-| 5. Test the code on scrambled data | All analysis code was written and tested on a copy of the data where ages were shuffled between people, so no real result could influence how the code was written. |
+| 5. Test the code on scrambled data | All analysis code was written and tested on a copy of the data where ages were shuffled between participants, so no real result could influence how the code was written. |
 | 6. Run the real analysis | Fitted smooth "lifespan curves" for each brain measure, trained age-prediction models, and ran a simulation of small studies. |
 
 Each step is a script in the `scripts/` folder; the technical README lists them all.
@@ -81,7 +81,7 @@ Other deep-brain structures involved in movement and reward (caudate, putamen, a
 
 - **Men's brains looked about 5 years "older" than women's.** But part of this is a side effect of the method. The model adjusts each measurement for head size, men's heads are larger on average, and brain parts don't scale exactly with head size. After accounting for this, the difference dropped to about 3 years. It shouldn't be read as men's brains ageing faster.
 - **Lower-quality scans made brains look older**, which is why image quality was recorded for every scan.
-- **The model underestimated the ages of the oldest people** (over 80, by about 11 years), a known weakness of these models, though only 8 people were in that age group.
+- **The model underestimated the ages of the oldest participants** (over 80, by about 11 years), a known weakness of these models, though only 8 participants were in that age group.
 
 ## Do small studies mislead? (H7)
 
@@ -93,7 +93,7 @@ Other deep-brain structures involved in movement and reward (caudate, putamen, a
 
 *Left: how often a study of each size finds an age effect. Right: how much the studies that did find one overestimated it (1× = accurate). Each line is one brain measure; lighter lines have stronger age effects.*
 
-| Brain measure | Strength of age effect | Found by studies of 25 people | Found by studies of 100 | How much studies of 25 overestimate it |
+| Brain measure | Strength of age effect | Found by studies of 25 participants | Found by studies of 100 | How much studies of 25 overestimate it |
 | --- | --- | --- | --- | --- |
 | Grey matter | Very strong | 100% | 100% | Accurate |
 | Thalamus | Strong | 70% | 100% | 1.2× |
