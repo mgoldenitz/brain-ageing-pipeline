@@ -16,7 +16,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | H2 | White matter volume rises into midlife, then declines |
 | H3 | Cerebrospinal fluid (CSF) volume rises with age, faster after 60 |
 | H4 | Hippocampus and thalamus volumes decline with age, faster after 60 |
-| H5 | A brain age model predicts age better than guessing all participant's mean age |
+| H5 | A brain age model predicts age better than a baseline that assigns every participant the mean age |
 | H6 | The brain age model is less accurate on a hospital it wasn't trained on |
 | H7 | Small studies detect the grey matter–age effect less often and overestimate it when they do (the "winner's curse") |
 
@@ -210,7 +210,7 @@ Numbers below come from the main analysis of 545 scans (531 for subcortical stru
 
 ### Brain age model (H5–H6)
 
-*In short:* A computer model estimated participant's age from 18 brain measurements to within about 7.4 years on average, half the error of guessing the average age for everyone, and it worked about as well on scans from a hospital it had never seen.
+*In short:* A computer model estimated participants' ages from 18 brain measurements to within about 7.4 years on average, half the error of a mean-age baseline, and it worked about as well on scans from a hospital it had never seen.
 
 ![Brain age predictions](results/real/fig_brainage.png)
 

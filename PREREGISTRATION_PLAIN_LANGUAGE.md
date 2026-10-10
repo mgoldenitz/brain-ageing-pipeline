@@ -30,7 +30,7 @@ Each prediction is tested after accounting for sex, hospital and head size, so t
 | H2 | White matter changes with age in a curve | Rising until midlife, then declining |
 | H3 | CSF increases with age | Increasing faster after about age 60 |
 | H4 | The hippocampus and thalamus shrink with age | Shrinking faster after about age 60 |
-| H5 | A computer model can estimate a participant's age from their brain measurements | Smaller errors than simply guessing the average age |
+| H5 | A computer model can estimate a participant's age from their brain measurements | Smaller errors than simply using the average age |
 | H6 | The model is less accurate on a hospital it wasn't trained on | Larger errors when tested on a new hospital |
 | H7 | Small studies find the grey matter–age effect less often and overestimate it | Smaller studies miss the effect more often and exaggerate it when they find it |
 
@@ -46,7 +46,7 @@ I also planned to explore, without firm predictions, whether men and women diffe
 2. **Consistency check.** 50 random scans are rated again at least a week later, to measure how consistent the ratings are.
 3. **Deep-brain errors.** If only the deep-brain outlines fail, those measurements are dropped, but the scan is kept for whole-brain measurements.
 4. **Image quality.** A measure of how clear each image is is recorded for every scan, but it is not used to remove scans.
-5. **Missing data.** Each analysis uses every scan that has the measurements it needs. Missing values are not filled in or guessed.
+5. **Missing data.** Each analysis uses every scan that has the measurements it needs. Missing values are not filled in or estimated.
 
 ## What is measured
 
@@ -65,7 +65,7 @@ I also planned to explore, without firm predictions, whether men and women diffe
 
 **Estimating age from the brain (H5–H6).**
 1. The model is given the 18 brain measurements, each adjusted for head size.
-2. Three common machine-learning methods are compared (ridge regression, random forest and gradient boosting), against a benchmark that just guesses the average age.
+2. Three common machine-learning methods are compared (ridge regression, random forest and gradient boosting), against a benchmark that simply uses the average age for everyone.
 3. The models are always tested on participants they weren't trained on. This is repeated many times with different splits of the data, so that the accuracy scores are honest.
 4. A standard correction is applied for these models' tendency to overestimate young participant's ages and underestimate older participant's.
 5. H5 is supported if the best model's average error is smaller than the benchmark's.

@@ -14,7 +14,7 @@ To answer these, I analysed 563 publicly available brain MRI scans of healthy ad
 
 - **The brain gradually loses volume with age.** Grey matter (the brain's "processing" tissue) shrank steadily, by about 3.5% every ten years. White matter (the "wiring" between regions) held steady until the late 30s, then declined, especially after 60. CSF grew to fill the gap, about twice as fast after 60.
 - **The hippocampus, a structure central to memory, stayed stable until about 60**, then shrank by about 8% per decade.
-- **A computer model estimated participant's age from their brain measurements to within 7.4 years on average.** That is half the error of simply guessing the average age for everyone. It worked just as well on scans from a hospital it had never been trained on.
+- **A computer model estimated participants' ages from their brain measurements to within 7.4 years on average.** That is half the error of simply using the average age for everyone. It worked just as well on scans from a hospital it had never been trained on.
 - **Small studies can be misleading.** With only 25 participants, a real correlation between age and hippocampus size would be found in about 20% of the sample, and when it was found, its size would be exaggerated about twofold.
 
 ## How the study was done
@@ -42,7 +42,7 @@ Each step is a script in the `scripts/` folder; the technical README lists them 
 | H2 | White matter grows into midlife, then shrinks | ✅ Confirmed |
 | H3 | CSF increases, faster after 60 | ✅ Confirmed |
 | H4 | The hippocampus and thalamus shrink, faster after 60 | ✅ Confirmed |
-| H5 | A computer model can estimate age better than guessing the average | ✅ Confirmed |
+| H5 | A computer model can estimate age better than simply using the average age | ✅ Confirmed |
 | H6 | The model works worse on a hospital it wasn't trained on | ❌ Not confirmed (it worked just as well) |
 | H7 | Small studies find the grey matter–age effect less often and exaggerate it | ⚠️ Technically met, but not informative (explained below) |
 
@@ -64,7 +64,7 @@ Every result stayed the same when I re-ran the analysis in different reasonable 
 
 Other deep-brain structures involved in movement and reward (caudate, putamen, accumbens) also shrank with age. One structure, the **pallidum**, showed no change, but the software is known to measure it least reliably, so that result should be treated with caution.
 
-## Guessing age from a brain scan (H5–H6)
+## Estimating age from a brain scan (H5–H6)
 
 ![Predicted vs real age](results/real/fig_brainage.png)
 
@@ -72,7 +72,7 @@ Other deep-brain structures involved in movement and reward (caudate, putamen, a
 
 | Method | Average error |
 | --- | --- |
-| Guess the average age for everyone (the benchmark) | 14.3 years |
+| Use the average age for everyone (the benchmark) | 14.3 years |
 | Ridge regression | 7.4 years |
 | **Random forest** (best) | **7.4 years** |
 | Gradient boosting | 7.4 years |
@@ -146,7 +146,7 @@ A pre-registration is only trustworthy if any changes to the plan are reported o
 | Deep-brain (subcortical) structures | Groups of brain cells deep inside the brain, such as the hippocampus (memory), amygdala (emotion) and thalamus (sensory relay) |
 | Pre-registration | Writing down predictions and methods before seeing the results |
 | Blind | Done without knowing information (like age) that could bias the decision |
-| Benchmark (baseline) | A simple "no-skill" guess that a real model has to beat |
+| Benchmark (baseline) | A simple "no-skill" prediction that a real model has to beat |
 | Average error (MAE) | How far off a prediction is, on average, in years |
 | Winner's curse | Small studies that find an effect tend to overestimate it |
 

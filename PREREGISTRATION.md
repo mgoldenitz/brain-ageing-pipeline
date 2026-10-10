@@ -24,7 +24,7 @@ This pre-registration covers secondary analyses of existing open data ([IXI data
 
 ## Hypotheses
 
-*In short:* Seven predictions. Grey matter shrinks with age (H1); white matter rises into midlife and then declines (H2); CSF increases, faster after 60 (H3); the hippocampus and thalamus shrink, faster after 60 (H4); a computer model can estimate age from brain measurements better than guessing the average (H5), but less accurately on a hospital it wasn't trained on (H6); and small studies find the grey matter–age effect less often and overestimate it (H7).
+*In short:* Seven predictions. Grey matter shrinks with age (H1); white matter rises into midlife and then declines (H2); CSF increases, faster after 60 (H3); the hippocampus and thalamus shrink, faster after 60 (H4); a computer model can estimate age from brain measurements better than a mean-age baseline (H5), but less accurately on a hospital it wasn't trained on (H6); and small studies find the grey matter–age effect less often and overestimate it (H7).
 
 Confirmatory hypotheses, each tested with adjustment for intracranial volume, sex and site:
 
