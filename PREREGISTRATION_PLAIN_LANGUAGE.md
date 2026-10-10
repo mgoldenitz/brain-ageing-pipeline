@@ -14,7 +14,7 @@ The study uses existing, freely available brain scans from the [IXI dataset](htt
 
 **Already done:**
 - Downloaded 581 brain scans and the participants' details. 563 of them include the participant's age.
-- Ran standard brain-imaging software (FSL) on all 563 scans to remove the skull from each image, separate grey matter, white matter and fluid, and outline 15 deep-brain structures, then measured each one.
+- Ran standard brain-imaging software (FSL) on all 563 scans to remove the skull from each image, separate grey matter, white matter and CSF, and outline 15 deep-brain structures, then measured each one.
 - Ran automatic checks that flag scans whose measurements look unusual, and looked at pictures of about 95 scans to see what problems looked like.
 - Started re-processing 50 scans flagged for problems with the deep-brain outlines.
 
@@ -28,7 +28,7 @@ Each prediction is tested after accounting for sex, hospital and head size, so t
 | --- | --- | --- |
 | H1 | Grey matter shrinks with age | A steady decline from the 20s onward |
 | H2 | White matter changes with age in a curve | Rising until midlife, then declining |
-| H3 | The fluid around the brain increases with age | Increasing faster after about age 60 |
+| H3 | CSF increases with age | Increasing faster after about age 60 |
 | H4 | The hippocampus and thalamus shrink with age | Shrinking faster after about age 60 |
 | H5 | A computer model can estimate a participant's age from their brain measurements | Smaller errors than simply guessing the average age |
 | H6 | The model is less accurate on a hospital it wasn't trained on | Larger errors when tested on a new hospital |
@@ -52,7 +52,7 @@ I also planned to explore, without firm predictions, whether men and women diffe
 
 | Type | What | How |
 | --- | --- | --- |
-| Main outcomes | Volumes of grey matter, white matter and fluid | Measured by FSL's tissue-labelling tool (FAST) |
+| Main outcomes | Volumes of grey matter, white matter and CSF | Measured by FSL's tissue-labelling tool (FAST) |
 | Main outcomes | Volumes of 15 deep-brain structures (thalamus, caudate, putamen, pallidum, hippocampus, amygdala and accumbens on each side, plus the brainstem) | Measured by FSL's outlining tool (FIRST) |
 | Main outcome | "Brain age gap": Predicted age minus real age | From the age-prediction model |
 | Main factor | Age | From the dataset |

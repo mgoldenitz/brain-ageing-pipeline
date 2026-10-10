@@ -22,7 +22,7 @@ To answer these, I analysed 563 publicly available brain MRI scans of healthy ad
 | Step | What happened |
 | --- | --- |
 | 1. Get the data | Downloaded brain scans and ages from the free IXI dataset (563 adults, ages 20–86, three London hospitals). |
-| 2. Measure the brain | Used FSL, standard brain-imaging software, to remove the skull from each image, label grey matter, white matter and fluid, and outline 15 deep-brain structures. Each was then measured in cubic centimetres (cm³). |
+| 2. Measure the brain | Used FSL, standard brain-imaging software, to remove the skull from each image, label grey matter, white matter and CSF, and outline 15 deep-brain structures. Each was then measured in cubic centimetres (cm³). |
 | 3. Write the plan first | Before looking at any results, I wrote down seven predictions and exactly how I would test them (a **pre-registration**). This stops results from being "fished for" afterwards. |
 | 4. Check quality, blind | I looked at every scan's measurements to catch software errors. Scans were shown under random codes, so I couldn't know anyone's age, sex or hospital while judging them. |
 | 5. Test the code on scrambled data | All analysis code was written and tested on a copy of the data where ages were shuffled between participants, so no real result could influence how the code was written. |
@@ -30,7 +30,7 @@ To answer these, I analysed 563 publicly available brain MRI scans of healthy ad
 
 ![Processing steps](results/real/fig_pipeline_steps.png)
 
-*The same slice of one brain scan at each step: the original scan, the skull removed, the brain labelled as fluid (blue), grey matter and white matter, and the deep-brain structures outlined in colour.*
+*The same slice of one brain scan at each step: the original scan, the skull removed, the brain labelled as CSF (blue), grey matter and white matter, and the deep-brain structures outlined in colour.*
 
 Each step is a script in the `scripts/` folder; the technical README lists them all.
 
@@ -40,7 +40,7 @@ Each step is a script in the `scripts/` folder; the technical README lists them 
 | --- | --- | --- |
 | H1 | Grey matter shrinks with age | ✅ Confirmed |
 | H2 | White matter grows into midlife, then shrinks | ✅ Confirmed |
-| H3 | The fluid around the brain increases, faster after 60 | ✅ Confirmed |
+| H3 | CSF increases, faster after 60 | ✅ Confirmed |
 | H4 | The hippocampus and thalamus shrink, faster after 60 | ✅ Confirmed |
 | H5 | A computer model can estimate age better than guessing the average | ✅ Confirmed |
 | H6 | The model works worse on a hospital it wasn't trained on | ❌ Not confirmed (it worked just as well) |

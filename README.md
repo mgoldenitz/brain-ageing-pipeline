@@ -195,7 +195,7 @@ Numbers below come from the main analysis of 545 scans (531 for subcortical stru
 
 ### Lifespan models (H1–H4)
 
-*In short:* The brain gradually loses volume with age. Grey matter shrinks steadily, white matter holds until the late 30s and then declines, the fluid around the brain increases, and the hippocampus (central to memory) stays stable until about 60 and then shrinks.
+*In short:* The brain gradually loses volume with age. Grey matter shrinks steadily, white matter holds until the late 30s and then declines, CSF increases, and the hippocampus (central to memory) stays stable until about 60 and then shrinks.
 
 ![Whole-brain volumes across the lifespan](results/real/fig_lifespan_whole_brain.png)
 
