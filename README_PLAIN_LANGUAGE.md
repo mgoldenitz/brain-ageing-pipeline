@@ -1,6 +1,6 @@
 # Brain Changes Across the Lifespan: Estimating Age from MRI (Plain-Language Version)
 
-*This is an easier-to-read version of the project summary. The full technical version is [README.md](README.md), and the original study plan is [PREREGISTRATION.md](PREREGISTRATION.md) (plain-language version: [PREREGISTRATION_PLAIN_LANGUAGE.md](PREREGISTRATION_PLAIN_LANGUAGE.md)).*
+*This is an easier-to-read version of the project summary. The full version, with plain-language summaries and all technical detail, is [README.md](README.md), and the original study plan is [PREREGISTRATION.md](PREREGISTRATION.md) (plain-language version: [PREREGISTRATION_PLAIN_LANGUAGE.md](PREREGISTRATION_PLAIN_LANGUAGE.md)).*
 
 ## What this project asked
 

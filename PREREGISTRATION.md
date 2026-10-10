@@ -4,7 +4,11 @@
 
 Analysis plan for the brain volume, brain age and sample-size analyses of the IXI dataset, specified before any association with age, sex or site was examined.
 
+**How to read this document.** A pre-registration is a study plan written down *before* looking at the results: it records what was expected and exactly how it would be tested, so the analysis can't be adjusted afterwards to produce a more interesting result. Each section below opens with a plain-language summary (*In short*), followed by the formal specification. A fully non-technical version is in [PREREGISTRATION_PLAIN_LANGUAGE.md](PREREGISTRATION_PLAIN_LANGUAGE.md). The plain-language summaries explain the plan; they do not change it.
+
 ## Study status
+
+*In short:* the study re-analyses existing, freely available brain scans. When this plan was written, the scans had been processed, but no relationship between any brain measurement and age, sex or hospital had been looked at.
 
 This pre-registration covers secondary analyses of existing open data ([IXI dataset](https://brain-development.org/ixi-dataset/), CC BY-SA 3.0). Image processing is complete; no outcome analyses have been run.
 
@@ -19,6 +23,8 @@ This pre-registration covers secondary analyses of existing open data ([IXI data
 **Not yet done:** no association of any brain measure with age, sex or site has been examined, plotted or tested; no brain age model has been trained.
 
 ## Hypotheses
+
+*In short:* seven predictions. Grey matter shrinks with age (H1); white matter rises into midlife and then declines (H2); the fluid around the brain increases, faster after 60 (H3); the hippocampus and thalamus shrink, faster after 60 (H4); a computer model can estimate age from brain measurements better than guessing the average (H5), but less accurately on a hospital it wasn't trained on (H6); and small studies find the grey matter–age effect less often and overestimate it (H7).
 
 Confirmatory hypotheses, each tested with adjustment for intracranial volume, sex and site:
 
@@ -36,6 +42,8 @@ Tests of sex differences in the brain age gap and of site differences before and
 
 ## Sample and exclusion rules
 
+*In short:* everyone with a scan and a recorded age is included (563 people). A scan is removed only if the software clearly made a mistake, never just because it looks unusual, since that would throw away people who are genuinely ageing faster or slower than average.
+
 The sample comprises all IXI participants with a T1 scan and a recorded age (n = 563), all of whom have a recorded sex.
 
 **Core rule: a flag only triggers review; a scan is excluded only for a confirmed processing failure.** Excluding scans for being atypical for their age would remove genuine accelerated or delayed ageing and bias the brain age results.
@@ -50,6 +58,8 @@ The number of exclusions under each rule, by site, is reported in the README.
 
 ## Variables
 
+*In short:* the outcomes are the volumes of brain tissues and 15 deep-brain structures, plus the difference between predicted and real age. Results are adjusted for sex, hospital and head size.
+
 | Role | Variable | Source | Notes |
 | --- | --- | --- | --- |
 | Outcome | Grey matter, white matter, CSF volume (mm³) | FSL FAST partial-volume maps | Their sum approximates total brain and fluid volume |
@@ -63,6 +73,8 @@ The number of exclusions under each rule, by site, is reported in the README.
 | Descriptive | Visual QC rating (0/1/2) | Blind rating | Exclusion rule 1 |
 
 ## Analysis plan
+
+*In short:* smooth curves are fitted to show how each brain measure changes across adulthood (H1–H4); age-prediction models are always tested on people they weren't trained on (H5–H6); and thousands of simulated small studies are drawn from the full sample to see how often they find the grey matter–age effect (H7).
 
 **Inference criteria:** two-sided tests at α = 0.05, with false discovery rate correction (Benjamini–Hochberg, q = 0.05) across the 15 subcortical structures. All effects are reported with 95% confidence intervals as well as p-values.
 
@@ -82,6 +94,8 @@ The number of exclusions under each rule, by site, is reported in the README.
 
 ## Sensitivity and exploratory analyses
 
+*In short:* the main analyses are repeated in several reasonable alternative ways, such as stricter quality checks or leaving out one hospital, and a result is only called robust if it holds in all of them.
+
 The confirmatory analyses (H1–H6) are repeated under each condition below; conclusions are considered robust if direction and significance are unchanged in all of them.
 
 - Excluding scans rated 1 (minor issue) as well as 2.
@@ -92,6 +106,8 @@ The confirmatory analyses (H1–H6) are repeated under each condition below; con
 Exploratory analyses, reported as such: sex-by-age interactions, site differences in the brain age gap before and after ComBat, the association between image quality and the brain age gap, and model performance above age 80 (8 scans).
 
 ## Deviations, reporting and sharing
+
+*In short:* the plan is saved publicly with a date before any results are examined, any later changes are reported with reasons, and all code and results are shared.
 
 - **Timestamp:** this plan is committed to GitHub before any outcome analysis; the commit date is the registration date.
 - **Deviations:** any post-registration change is listed, with its reason and date, in the README's "Deviations from pre-registration" section.
