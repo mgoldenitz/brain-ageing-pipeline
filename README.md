@@ -233,6 +233,11 @@ Weaker effects showed a clear winner's curse. At n = 25, the hippocampus–age e
 
 ## Deviations from pre-registration
 
+Eight documented deviations: seven made on shuffled data before unblinding, and one shorter retest interval.
+
+<details>
+<summary><b>Show all eight deviations</b></summary>
+
 All analysis code was developed on a **blind version of the data**, with age, sex and site shuffled between participants and QC ratings shuffled between scans (`scripts/09_build_dataset.py --shuffled`), which removes every real relationship while preserving the data's structure. Deviations 1–7 were made on this basis, before unblinding and before any analysis of real outcomes; deviation 8 concerns the rating schedule. All scripts were committed to this repository before unblinding.
 
 **1. Site counts corrected (6 October 2026).** The pre-registration lists 322 (Guy's), 185 (Hammersmith) and 74 (IOP) scans, which are counts for all 581 downloaded scans. The 563 scans with a recorded age comprise 314, 181 and 68. This is a reporting correction only.
@@ -257,6 +262,8 @@ All analysis code was developed on a **blind version of the data**, with age, se
 **7. Brain-age-gap models adjusted for age (6 October 2026).** The exploratory brain-age-gap models (sex, site and image quality) include age as a covariate, as recommended by de Lange & Cole (2020); without it, the gap's inherent correlation with age produced spurious effects on shuffled data.
 
 **8. Retest interval shorter than planned (8 October 2026).** The pre-registration specifies a retest "at least one week later"; it was conducted 2 days after the main rating (6 and 8 October) for scheduling reasons. Recall may slightly inflate test–retest agreement, although the retest used new codes and order and was completed without reference to the main ratings.
+
+</details>
 
 ## Data
 
