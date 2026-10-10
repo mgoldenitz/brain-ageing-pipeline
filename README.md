@@ -203,7 +203,7 @@ Bias correction increased the error to 8.8–9.2 years, which is why H5 was eval
 
 *Skill = 1 − model error ÷ baseline error.*
 
-The model generalised well to unseen scanners: accuracy decreased slightly only for Guy's and improved for IOP. However, the two settings differ in training-set size as well as scanner (about 60 training scans within IOP versus about 465 across the other sites), so the comparison cannot fully separate scanner effects from sample size. The results indicate that differences between these three scanners had little effect on a volume-based model.
+The model generalised well to scanners it hadn't been trained on: Accuracy decreased slightly only for Guy's and improved for IOP. However, the two settings differ in training-set size as well as scanner (about 60 training scans within IOP versus about 465 across the other sites), so the comparison cannot fully separate scanner effects from sample size. The results indicate that differences between these three scanners had little effect on a volume-based model.
 
 **Exploratory brain-age-gap analyses** (bias-corrected gap from the best model, adjusted for age; `results/real/brainage_exploratory.txt`):
 
