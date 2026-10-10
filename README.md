@@ -129,6 +129,7 @@ How does brain volume change from young adulthood to late adulthood, and can a m
 | 9. SQLite database and example queries | `scripts/15_build_database.py`, `sql/` | Python (sqlite3), SQL |
 | 10. Post-hoc checks (baseline choice, head size and the sex effect) | `scripts/16_posthoc_checks.py` | Python (statsmodels) |
 | 11. Brain image figures (processing steps; good vs failed segmentation) | `scripts/17_brain_image_figures.py` | Python (nibabel, matplotlib) |
+| 12. Exploratory: extra models (SVR, Gaussian process, neural network), feature importance, learning curve, outlier detection | `scripts/18_exploratory_ml.py` | Python (scikit-learn, matplotlib) |
 
 Rating rules are in [QC_RATING_GUIDE.md](QC_RATING_GUIDE.md). The SQLite database (step 9) is a supporting extra and isn't part of the pre-registered analysis.
 
@@ -264,6 +265,32 @@ The model generalised well to scanners it hadn't been trained on: Accuracy decre
 | Amygdala (L) | +3.1 | 7% | 23% | 3.73× |
 
 Weaker effects showed a clear winner's curse. At n = 25, the hippocampus–age effect was detected in about one sample in five, and significant estimates were about twice the full-sample value. For effects near zero in the full sample (pallidum, right amygdala, brainstem), significant results occurred at roughly the 5% false-positive rate and often had the wrong sign. Two limitations: The models are linear, so non-monotonic effects (such as the brainstem) appear weak; and at n = 500 each sample contains almost the entire dataset, so results converge on the full-sample estimate.
+
+### Exploratory machine-learning checks (post-hoc)
+
+*In short:* Added after the results were known and not pre-registered. Three further model types, including a neural network, matched the pre-registered models, so the age information lies in the volumes rather than the algorithm. The model relied almost entirely on grey matter and CSF, its error levelled off at about 240 training scans, and automatic outlier detection flagged the subcortical segmentation failures but not the whole-brain ones.
+
+All checks use the primary analysis scans (n = 531) with the same features, ComBat step and cross-validation folds as the pre-registered brain age model (`scripts/18_exploratory_ml.py`; full output in `results/real/exploratory_ml.txt`).
+
+| Model | MAE (years) | vs Random Forest (50 paired folds) |
+| --- | --- | --- |
+| Gaussian process regression | 7.32 | −0.05, p = 0.22 |
+| Random Forest (pre-registered best) | 7.37 | — |
+| Neural network (MLP) | 7.37 | +0.01, p = 0.53 |
+| Gradient Boosting | 7.39 | — |
+| Ridge | 7.41 | — |
+| Support vector regression | 7.73 | +0.36, p < 0.001 |
+| Mean-age baseline | 14.31 | — |
+
+- **Model choice:** Six model families spanning linear, tree-based, kernel and neural network approaches fell within 0.1 year of each other, except SVR, which was slightly worse.
+- **Leave-one-site-out:** Recomputing H6 with scikit-learn's `LeaveOneGroupOut` reproduced the custom implementation exactly (largest difference 0.000 years).
+- **Feature importance:** Shuffling grey matter in held-out scans raised the error by 5.2 years and shuffling CSF by 2.4 years; no other volume added more than 0.1 year. Partial dependence showed predicted age falling from about 58 to 33 years across the observed range of grey matter (38–48% of intracranial volume) and rising from about 42 to 58 years across CSF (16–24%). Correlated left and right structures share credit, so individual subcortical importances are understated.
+- **Learning curve:** Random Forest error fell from 7.9 years with 80 training scans to 7.3 years at about 240 and changed little thereafter (7.2 years at 424), suggesting accuracy is now limited by the 18 features rather than the sample size.
+- **Outlier detection:** IsolationForest and LocalOutlierFactor, given no QC labels, ranked the 13 subcortical segmentation failures well above passing scans (AUC 0.96–0.97; LocalOutlierFactor placed 12 of 13 in its top 5%) but did not detect the 18 whole-brain failures (AUC 0.39–0.51), which are visible in the images but not in the volumes. This supports visual rating as the primary QC step.
+
+![Permutation importance and partial dependence](results/real/fig_feature_importance.png)
+
+![Learning curve](results/real/fig_learning_curve.png)
 
 ## Deviations from pre-registration
 
