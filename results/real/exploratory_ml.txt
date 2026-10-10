@@ -1,0 +1,75 @@
+EXPLORATORY MACHINE-LEARNING CHECKS (post-hoc, not pre-registered)
+Primary analysis scans: n = 531; best pre-registered model: Random Forest
+
+1. Three additional model types (same nested CV and folds as the pre-registered models)
+   Folds identical to scripts/12_brain_age.py: True
+   Mean cross-validated MAE (years, uncorrected):
+     Gaussian Process         7.32  (SD across folds 0.63)
+     Random Forest            7.37  (SD across folds 0.68)
+     Neural network (MLP)     7.37  (SD across folds 0.62)
+     Gradient Boosting        7.39  (SD across folds 0.68)
+     Ridge                    7.41  (SD across folds 0.60)
+     SVR                      7.73  (SD across folds 0.76)
+     Baseline                14.31  (SD across folds 1.06)
+   SVR vs Random Forest: mean difference +0.36 years, Wilcoxon p = 0.00013 (50 paired folds)
+   Gaussian Process vs Random Forest: mean difference -0.05 years, Wilcoxon p = 0.222 (50 paired folds)
+   Neural network (MLP) vs Random Forest: mean difference +0.01 years, Wilcoxon p = 0.527 (50 paired folds)
+
+2. Leave-one-site-out recomputed with LeaveOneGroupOut (no ComBat, as in H6)
+   Site            n   MAE now   MAE in brainage_loso.csv
+   Guys          297      7.86      7.86   (Random Forest)
+   HH            168      7.29      7.29   (Random Forest)
+   IOP            66      7.33      7.33   (Random Forest)
+   Guys          297     14.12     14.12   (Baseline)
+   HH            168     14.64     14.64   (Baseline)
+   IOP            66     15.66     15.66   (Baseline)
+   Largest difference from the hand-written loop: 0.000 years
+
+3. Permutation importance (Random Forest; rise in test MAE, years, when a volume is shuffled;
+   mean over 10 held-out folds x 20 shuffles)
+     Grey matter         +5.22  (SD 0.80)
+     CSF                 +2.43  (SD 0.58)
+     Left caudate        +0.06  (SD 0.08)
+     White matter        +0.05  (SD 0.10)
+     Right pallidum      +0.04  (SD 0.07)
+     Brainstem           +0.03  (SD 0.09)
+     Right caudate       +0.03  (SD 0.02)
+     Right accumbens     +0.03  (SD 0.07)
+     Left hippocampus    +0.02  (SD 0.07)
+     Right putamen       +0.02  (SD 0.04)
+     Left putamen        +0.01  (SD 0.04)
+     Left amygdala       +0.01  (SD 0.09)
+     Left pallidum       -0.00  (SD 0.05)
+     Right thalamus      -0.01  (SD 0.04)
+     Left thalamus       -0.01  (SD 0.06)
+     Right hippocampus   -0.01  (SD 0.08)
+     Right amygdala      -0.01  (SD 0.04)
+     Left accumbens      -0.01  (SD 0.05)
+   Left and right structures are correlated, so they split the credit between them.
+
+4. Partial dependence: predicted age at the 5th and 95th percentile of each top volume
+     Grey matter        37.699% of ICV -> 58.2 y;  47.991% -> 33.2 y
+     CSF                15.940% of ICV -> 41.6 y;  23.925% -> 57.6 y
+     Left caudate       0.201% of ICV -> 49.0 y;  0.301% -> 47.7 y
+     White matter       35.225% of ICV -> 48.6 y;  45.582% -> 48.1 y
+
+5. Learning curve (test MAE, years; mean of 10 random 80/20 splits)
+   Training scans      80     120     160     240     320     424
+   Baseline         13.70   13.72   13.71   13.67   13.67   13.67
+   Ridge             8.09    7.84    7.67    7.44    7.38    7.32
+   Random Forest     7.90    7.73    7.53    7.26    7.18    7.24
+   Random Forest: MAE changed by +0.06 years over the last step (320 -> 424 scans); near zero means more scans would add little.
+
+6. Outlier detection on the 18 volumes (n = 562; 13 subcortical and 18 whole-brain QC failures)
+   AUC = how well the score ranks failures above passes (0.5 = chance);
+   'in top 5%' = failures among the 28 highest-scoring scans.
+   Method                                          AUC sub  top5% sub   AUC wb  top5% wb
+   Robust z (rule used to pick scans for review)     0.97    12/13       0.43     1/18
+   IsolationForest                                   0.97     9/13       0.49     1/18
+   LocalOutlierFactor                                0.97    12/13       0.51     0/18
+   IsolationForest (age-adjusted)                    0.97     9/13       0.39     0/18
+   LocalOutlierFactor (age-adjusted)                 0.96    12/13       0.45     0/18
+   Caveat: 7 of the subcortical failures were found by reviewing robust-z flags, so the
+   robust-z row is partly circular for subcortical failures.
+
+scikit-learn 1.9.1; seed 42; repeats 5; outer 10; inner 5
