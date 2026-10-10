@@ -10,6 +10,21 @@
 
 To answer these, I analysed 563 publicly available brain MRI scans of healthy adults from three London hospitals.
 
+## Glossary
+
+| Term | Meaning |
+| --- | --- |
+| MRI | A scanner that uses magnetic fields to take detailed pictures of the body, without radiation |
+| Grey matter | Brain tissue where information is processed |
+| White matter | Nerve fibres that carry signals between brain regions |
+| Cerebrospinal fluid (CSF) | The fluid in and around the brain |
+| Deep-brain (subcortical) structures | Groups of brain cells deep inside the brain, such as the hippocampus (memory), amygdala (emotion) and thalamus (sensory relay) |
+| Pre-registration | Writing down predictions and methods before seeing the results |
+| Blind | Done without knowing information (like age) that could bias the decision |
+| Benchmark (baseline) | A simple "no-skill" prediction that a real model has to beat |
+| Average error (MAE) | How far off a prediction is, on average, in years |
+| Winner's curse | Small studies that find an effect tend to overestimate it |
+
 ## The main findings
 
 - **The brain gradually loses volume with age.** Grey matter (the brain's "processing" tissue) shrank steadily, by about 3.5% every ten years. White matter (the "wiring" between regions) held steady until the late 30s, then declined, especially after 60. CSF grew to fill the gap, about twice as fast after 60.
@@ -147,21 +162,6 @@ A pre-registration is only trustworthy if any changes to the plan are reported o
 
 - **Seven** were made while testing the code on scrambled data, before any real results were seen: For example, correcting a typo in the hospital counts, writing out the exact pass/fail rules for each prediction, and fixing a rule for H6 that could "pass" even with meaningless data.
 - **One** was a scheduling change: The second round of quality ratings was done 2 days after the first instead of the planned week, which may make the ratings look slightly more consistent than they are.
-
-## Glossary
-
-| Term | Meaning |
-| --- | --- |
-| MRI | A scanner that uses magnetic fields to take detailed pictures of the body, without radiation |
-| Grey matter | Brain tissue where information is processed |
-| White matter | Nerve fibres that carry signals between brain regions |
-| Cerebrospinal fluid (CSF) | The fluid in and around the brain |
-| Deep-brain (subcortical) structures | Groups of brain cells deep inside the brain, such as the hippocampus (memory), amygdala (emotion) and thalamus (sensory relay) |
-| Pre-registration | Writing down predictions and methods before seeing the results |
-| Blind | Done without knowing information (like age) that could bias the decision |
-| Benchmark (baseline) | A simple "no-skill" prediction that a real model has to beat |
-| Average error (MAE) | How far off a prediction is, on average, in years |
-| Winner's curse | Small studies that find an effect tend to overestimate it |
 
 ## Data and author
 
