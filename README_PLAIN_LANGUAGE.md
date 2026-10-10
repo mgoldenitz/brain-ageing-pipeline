@@ -48,7 +48,7 @@ Every result stayed the same when I re-ran the analysis in different reasonable 
 
 ![How brain volumes change with age](results/real/fig_lifespan_whole_brain.png)
 
-*Each dot is one person; the blue line is the average trend, and the shaded band shows how certain that trend is. Volumes are adjusted so that differences in sex, hospital and head size don't distort the picture.*
+*Each dot is one participant; the blue line is the average trend, and the shaded band shows how certain that trend is. Volumes are adjusted so that differences in sex, hospital and head size don't distort the picture.*
 
 - **Grey matter:** lost about 20 cm³ (3.5%) every decade, in an almost straight line, about 134 cm³ in total from age 20 to 86.
 - **White matter:** peaked around age 37, then declined, slowly at first and about five times faster after 60.
@@ -64,7 +64,7 @@ Other deep-brain structures involved in movement and reward (caudate, putamen, a
 
 ![Predicted vs real age](results/real/fig_brainage.png)
 
-*Left and middle: each dot is one person, comparing their predicted age with their real age; a perfect prediction would sit on the dashed line. Right: the average error of each model.*
+*Left and middle: each dot is one participant, comparing their predicted age with their real age; a perfect prediction would sit on the dashed line. Right: the average error of each model.*
 
 | Method | Average error |
 | --- | --- |

@@ -1,6 +1,6 @@
 # Brain Changes Across the Lifespan: Estimating Age from MRI
 
-How does brain volume change from young adulthood to late adulthood, and can a machine-learning model predict a person's age from their brain scan? This project answers both questions with a reproducible analysis pipeline applied to 563 publicly available brain MRI scans from three London hospitals.
+How does brain volume change from young adulthood to late adulthood, and can a machine-learning model predict a participant's age from their brain scan? This project answers both questions with a reproducible analysis pipeline applied to 563 publicly available brain MRI scans from three London hospitals.
 
 **Status:** Pre-registered analysis complete (8 October 2026). H1–H5 supported, H6 not supported, H7 technically met but uninformative (hypotheses and abbreviations are defined in [Key terms](#key-terms); details in [Results](#results)). The analysis plan was pre-registered in [PREREGISTRATION.md](PREREGISTRATION.md) before any models were run.
 

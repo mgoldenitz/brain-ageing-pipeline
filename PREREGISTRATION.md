@@ -42,7 +42,7 @@ Tests of sex differences in the brain age gap and of site differences before and
 
 ## Sample and exclusion rules
 
-*In short:* everyone with a scan and a recorded age is included (563 people). A scan is removed only if the software clearly made a mistake, never just because it looks unusual, since that would throw away people who are genuinely ageing faster or slower than average.
+*In short:* everyone with a scan and a recorded age is included (563 participants). A scan is removed only if the software clearly made a mistake, never just because it looks unusual, since that would throw away participants who are genuinely ageing faster or slower than average.
 
 The sample comprises all IXI participants with a T1 scan and a recorded age (n = 563), all of whom have a recorded sex.
 
@@ -74,7 +74,7 @@ The number of exclusions under each rule, by site, is reported in the README.
 
 ## Analysis plan
 
-*In short:* smooth curves are fitted to show how each brain measure changes across adulthood (H1–H4); age-prediction models are always tested on people they weren't trained on (H5–H6); and thousands of simulated small studies are drawn from the full sample to see how often they find the grey matter–age effect (H7).
+*In short:* smooth curves are fitted to show how each brain measure changes across adulthood (H1–H4); age-prediction models are always tested on participants they weren't trained on (H5–H6); and thousands of simulated small studies are drawn from the full sample to see how often they find the grey matter–age effect (H7).
 
 **Inference criteria:** two-sided tests at α = 0.05, with false discovery rate correction (Benjamini–Hochberg, q = 0.05) across the 15 subcortical structures. All effects are reported with 95% confidence intervals as well as p-values.
 

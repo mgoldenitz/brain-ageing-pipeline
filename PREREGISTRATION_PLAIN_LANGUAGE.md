@@ -13,7 +13,7 @@ A pre-registration is a study plan written down **before** looking at the result
 The study uses existing, freely available brain scans from the [IXI dataset](https://brain-development.org/ixi-dataset/), so no new data were collected.
 
 **Already done:**
-- Downloaded 581 brain scans and the participants' details. 563 of them include the person's age.
+- Downloaded 581 brain scans and the participants' details. 563 of them include the participant's age.
 - Ran standard brain-imaging software (FSL) on all 563 scans to remove the skull from each image, separate grey matter, white matter and fluid, and outline 15 deep-brain structures, then measured each one.
 - Ran automatic checks that flag scans whose measurements look unusual, and looked at pictures of about 95 scans to see what problems looked like.
 - Started re-processing 50 scans flagged for problems with the deep-brain outlines.
@@ -30,7 +30,7 @@ Each prediction is tested after accounting for sex, hospital and head size, so t
 | H2 | White matter changes with age in a curve | Rising until midlife, then declining |
 | H3 | The fluid around the brain increases with age | Increasing faster after about age 60 |
 | H4 | The hippocampus and thalamus shrink with age | Shrinking faster after about age 60 |
-| H5 | A computer model can estimate a person's age from their brain measurements | Smaller errors than simply guessing the average age |
+| H5 | A computer model can estimate a participant's age from their brain measurements | Smaller errors than simply guessing the average age |
 | H6 | The model is less accurate on a hospital it wasn't trained on | Larger errors when tested on a new hospital |
 | H7 | Small studies find the grey matter–age effect less often and overestimate it | Smaller studies miss the effect more often and exaggerate it when they find it |
 
@@ -38,11 +38,11 @@ I also planned to explore, without firm predictions, whether men and women diffe
 
 ## Who is included, and when scans are removed
 
-**Everyone in the dataset with a scan and a recorded age is included: 563 people**, all of whom also have a recorded sex.
+**Everyone in the dataset with a scan and a recorded age is included: 563 participants**, all of whom also have a recorded sex.
 
-**The key rule: a scan is only removed if the software clearly made a mistake.** Being unusual is not enough. Removing people just because their brain looks unusual for their age would throw away exactly the people who are ageing faster or slower than average, and bias the results.
+**The key rule: a scan is only removed if the software clearly made a mistake.** Being unusual is not enough. Removing participants just because their brain looks unusual for their age would throw away exactly the participants who are ageing faster or slower than average, and bias the results.
 
-1. **Visual check.** Every scan's software output is checked by eye, without knowing the person's age, sex or hospital, and rated **good (0), minor issue (1, kept) or failed (2, removed)**.
+1. **Visual check.** Every scan's software output is checked by eye, without knowing the participant's age, sex or hospital, and rated **good (0), minor issue (1, kept) or failed (2, removed)**.
 2. **Consistency check.** 50 random scans are rated again at least a week later, to measure how consistent the ratings are.
 3. **Deep-brain errors.** If only the deep-brain outlines fail, those measurements are dropped, but the scan is kept for whole-brain measurements.
 4. **Image quality.** A measure of how clear each image is is recorded for every scan, but it is not used to remove scans.
@@ -66,12 +66,12 @@ I also planned to explore, without firm predictions, whether men and women diffe
 **Estimating age from the brain (H5–H6).**
 1. The model is given the 18 brain measurements, each adjusted for head size.
 2. Three common machine-learning methods are compared (ridge regression, random forest and gradient boosting), against a benchmark that just guesses the average age.
-3. The models are always tested on people they weren't trained on. This is repeated many times with different splits of the data, so that the accuracy scores are honest.
-4. A standard correction is applied for these models' tendency to overestimate young people's ages and underestimate older people's.
+3. The models are always tested on participants they weren't trained on. This is repeated many times with different splits of the data, so that the accuracy scores are honest.
+4. A standard correction is applied for these models' tendency to overestimate young participant's ages and underestimate older participant's.
 5. H5 is supported if the best model's average error is smaller than the benchmark's.
 6. For H6, the model is trained on two hospitals and tested on the third, and its accuracy is compared with training and testing within the same hospital.
 
-**Do small studies mislead? (H7).** Thousands of pretend "small studies" are created by randomly drawing 25, 50, 100, 200, 300 or 500 people from the full dataset, 1,000 times at each size. For each size, I count how often the grey matter–age effect is found, and whether the studies that find it overestimate it.
+**Do small studies mislead? (H7).** Thousands of pretend "small studies" are created by randomly drawing 25, 50, 100, 200, 300 or 500 participants from the full dataset, 1,000 times at each size. For each size, I count how often the grey matter–age effect is found, and whether the studies that find it overestimate it.
 
 ## Checking the results hold up
 
