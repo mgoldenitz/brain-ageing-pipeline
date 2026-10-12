@@ -10,6 +10,9 @@ cross-validation splits as scripts/12_brain_age.py (run that first). Six checks:
      (GPR), both common in published brain age work, and a small neural network (multi-layer
      perceptron, MLP; one or two hidden layers, early stopping, age standardised for training). Same 5 x 10 x 5 nested CV, same folds,
      so their fold MAEs can be compared pairwise with the saved models (Wilcoxon test).
+     Plus two stronger baselines than the mean age: linear regression on grey matter alone, and
+     on grey matter + CSF (same ComBat and scaling, same folds), to show how much the 18-volume
+     models add over the one or two volumes that carry most of the age signal.
   2. Leave-one-site-out (H6) recomputed with scikit-learn's LeaveOneGroupOut, as a check that
      the hand-written split loop in 12_brain_age.py gives the same numbers.
   3. Permutation importance: within each of 10 outer folds, the best model is trained on the
@@ -80,7 +83,8 @@ PART = {"Thal": "thalamus", "Caud": "caudate", "Puta": "putamen", "Pall": "palli
 PRETTY = {"gm": "Grey matter", "wm": "White matter", "csf": "CSF", "BrStem": "Brainstem"}
 PRETTY.update({f"{s}_{k}": f"{'Left' if s == 'L' else 'Right'} {v}" for s in "LR" for k, v in PART.items()})
 NAMES = {"baseline": "Baseline", "ridge": "Ridge", "random_forest": "Random Forest",
-         "gradient_boosting": "Gradient Boosting", "svr": "SVR", "gaussian_process": "Gaussian Process", "mlp": "Neural network (MLP)"}
+         "gradient_boosting": "Gradient Boosting", "svr": "SVR", "gaussian_process": "Gaussian Process", "mlp": "Neural network (MLP)",
+         "gm_only": "Grey matter only (linear)", "gm_csf": "Grey matter + CSF (linear)"}
 
 
 # ---- Same data rules, features and ComBat step as scripts/12_brain_age.py --------------------
@@ -98,6 +102,19 @@ def make_xy(d):
     X["site"] = d["site"].to_numpy()
     X["sex"] = (d["sex"] == "male").astype(float).to_numpy()
     return X, d["age"].to_numpy(dtype=float), d
+
+
+class Pick(BaseEstimator, TransformerMixin):
+    """Keeps only the listed volume columns (after ComBat and scaling), for the simple baselines."""
+
+    def __init__(self, cols=("gm",)):
+        self.cols = cols
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X):
+        return np.asarray(X)[:, [VOLS.index(c) for c in self.cols]]
 
 
 class ComBat(BaseEstimator, TransformerMixin):
@@ -155,6 +172,9 @@ MODELS = {
                 transformer=StandardScaler()),
             {"model__regressor__hidden_layer_sizes": [(16,), (64,), (32, 16)],
              "model__regressor__alpha": [1e-3, 1e-1, 1.0]}),
+    # Stronger baselines: one or two volumes, plain linear regression
+    "gm_only": (Pipeline([("pick", Pick(("gm",))), ("lr", LinearRegression())]), {}),
+    "gm_csf": (Pipeline([("pick", Pick(("gm", "csf"))), ("lr", LinearRegression())]), {}),
 }
 
 
@@ -197,7 +217,7 @@ report = ["EXPLORATORY MACHINE-LEARNING CHECKS (post-hoc, not pre-registered)"
 rows = []
 for rep in range(REPEATS):
     for k, (tr, te) in enumerate(KFold(OUTER, shuffle=True, random_state=SEED + rep).split(X)):
-        for name in ["baseline", "svr", "gaussian_process", "mlp"]:
+        for name in ["baseline", "svr", "gaussian_process", "mlp", "gm_only", "gm_csf"]:
             est = tuned(name, True, SEED + 100 * rep + k).fit(X.iloc[tr], y[tr])
             rows.append(dict(repeat=rep, fold=k, model=name, mae=mae(y[te], est.predict(X.iloc[te]))))
     print(f"  1. extra models: repeat {rep + 1}/{REPEATS} done", flush=True)
@@ -209,14 +229,14 @@ chk = (new[new.model == "baseline"].merge(saved[saved.model == "baseline"], on=[
 same_folds = len(chk) == len(new[new.model == "baseline"]) and np.allclose(chk.mae_new, chk.mae_saved)
 both.to_csv(OUT / "exploratory_ml_models.csv", index=False)
 means = both.groupby("model")["mae"].agg(["mean", "std"]).sort_values("mean")
-report += ["1. Three additional model types (same nested CV and folds as the pre-registered models)",
+report += ["1. Three additional model types and two simple baselines (same nested CV and folds as the pre-registered models)",
            f"   Folds identical to scripts/12_brain_age.py: {same_folds}",
            "   Mean cross-validated MAE (years, uncorrected):"]
 for m, r in means.iterrows():
-    report.append(f"     {NAMES[m]:22s} {r['mean']:6.2f}  (SD across folds {r['std']:.2f})")
+    report.append(f"     {NAMES[m]:28s} {r['mean']:6.2f}  (SD across folds {r['std']:.2f})")
 if same_folds:
     b = saved[saved.model == best].sort_values(["repeat", "fold"])["mae"].to_numpy()
-    for m in ["svr", "gaussian_process", "mlp"]:
+    for m in ["svr", "gaussian_process", "mlp", "gm_only", "gm_csf"]:
         a = new[new.model == m].sort_values(["repeat", "fold"])["mae"].to_numpy()
         p = stats.wilcoxon(a, b).pvalue
         report.append(f"   {NAMES[m]} vs {NAMES[best]}: mean difference {np.mean(a - b):+.2f} years, "
