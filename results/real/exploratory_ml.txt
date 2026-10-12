@@ -1,19 +1,23 @@
 EXPLORATORY MACHINE-LEARNING CHECKS (post-hoc, not pre-registered)
 Primary analysis scans: n = 531; best pre-registered model: Random Forest
 
-1. Three additional model types (same nested CV and folds as the pre-registered models)
+1. Three additional model types and two simple baselines (same nested CV and folds as the pre-registered models)
    Folds identical to scripts/12_brain_age.py: True
    Mean cross-validated MAE (years, uncorrected):
-     Gaussian Process         7.32  (SD across folds 0.63)
-     Random Forest            7.37  (SD across folds 0.68)
-     Neural network (MLP)     7.37  (SD across folds 0.62)
-     Gradient Boosting        7.39  (SD across folds 0.68)
-     Ridge                    7.41  (SD across folds 0.60)
-     SVR                      7.73  (SD across folds 0.76)
-     Baseline                14.31  (SD across folds 1.06)
+     Gaussian Process             7.32  (SD across folds 0.63)
+     Random Forest                7.37  (SD across folds 0.68)
+     Neural network (MLP)         7.37  (SD across folds 0.62)
+     Gradient Boosting            7.39  (SD across folds 0.68)
+     Ridge                        7.41  (SD across folds 0.60)
+     Grey matter + CSF (linear)   7.41  (SD across folds 0.65)
+     SVR                          7.73  (SD across folds 0.76)
+     Grey matter only (linear)    8.69  (SD across folds 0.88)
+     Baseline                     14.31  (SD across folds 1.06)
    SVR vs Random Forest: mean difference +0.36 years, Wilcoxon p = 0.00013 (50 paired folds)
    Gaussian Process vs Random Forest: mean difference -0.05 years, Wilcoxon p = 0.222 (50 paired folds)
    Neural network (MLP) vs Random Forest: mean difference +0.01 years, Wilcoxon p = 0.527 (50 paired folds)
+   Grey matter only (linear) vs Random Forest: mean difference +1.32 years, Wilcoxon p = 4.44e-14 (50 paired folds)
+   Grey matter + CSF (linear) vs Random Forest: mean difference +0.05 years, Wilcoxon p = 0.415 (50 paired folds)
 
 2. Leave-one-site-out recomputed with LeaveOneGroupOut (no ComBat, as in H6)
    Site            n   MAE now   MAE in brainage_loso.csv
