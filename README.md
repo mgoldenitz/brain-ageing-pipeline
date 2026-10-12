@@ -268,7 +268,7 @@ Weaker effects showed a clear winner's curse. At n = 25, the hippocampus–age e
 
 ### Exploratory machine-learning checks (post-hoc)
 
-*In short:* Added after the results were known and not pre-registered. Three further model types, including a neural network, matched the pre-registered models, so the age information lies in the volumes rather than the algorithm. The model relied almost entirely on grey matter and CSF, its error levelled off at about 240 training scans, and automatic outlier detection flagged the subcortical segmentation failures but not the whole-brain ones.
+*In short:* Added after the results were known and not pre-registered. Three further model types, including a neural network, matched the pre-registered models, and a simple linear regression on just grey matter and CSF did equally well, so the age information lies in those two volumes rather than the algorithm. The models relied almost entirely on grey matter and CSF, its error levelled off at about 240 training scans, and automatic outlier detection flagged the subcortical segmentation failures but not the whole-brain ones.
 
 All checks use the primary analysis scans (n = 531) with the same features, ComBat step and cross-validation folds as the pre-registered brain age model (`scripts/18_exploratory_ml.py`; full output in `results/real/exploratory_ml.txt`).
 
@@ -279,10 +279,13 @@ All checks use the primary analysis scans (n = 531) with the same features, ComB
 | Neural network (MLP) | 7.37 | +0.01, p = 0.53 |
 | Gradient Boosting | 7.39 | — |
 | Ridge | 7.41 | — |
+| Grey matter + CSF only (linear regression) | 7.41 | +0.05, p = 0.42 |
 | Support vector regression | 7.73 | +0.36, p < 0.001 |
+| Grey matter only (linear regression) | 8.69 | +1.32, p < 0.001 |
 | Mean-age baseline | 14.31 | — |
 
 - **Model choice:** Six model families spanning linear, tree-based, kernel and neural network approaches fell within 0.1 year of each other, except SVR, which was slightly worse.
+- **Stronger baselines:** The mean-age baseline only shows that a model learns something. Two tougher baselines show how much the 18-volume models add: a linear regression on grey matter alone reached 8.7 years, and on grey matter and CSF together 7.4 years, matching every machine-learning model. Most of the brain age signal in these features is captured by two volumes; the other 16 and the more complex algorithms add essentially nothing.
 - **Leave-one-site-out:** Recomputing H6 with scikit-learn's `LeaveOneGroupOut` reproduced the custom implementation exactly (largest difference 0.00 years).
 - **Feature importance:** Shuffling grey matter in held-out scans raised the error by 5.2 years and shuffling CSF by 2.4 years; no other volume added more than 0.1 year. Partial dependence showed predicted age falling from about 58 to 33 years across the observed range of grey matter (38–48% of intracranial volume) and rising from about 42 to 58 years across CSF (16–24%). Correlated left and right structures share credit, so individual subcortical importances are understated.
 - **Learning curve:** Random Forest error fell from 7.9 years with 80 training scans to 7.3 years at about 240 and changed little thereafter (7.2 years at 424), suggesting accuracy is now limited by the 18 features rather than the sample size (`results/real/fig_learning_curve.png`).
