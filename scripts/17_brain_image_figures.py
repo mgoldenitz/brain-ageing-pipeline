@@ -183,8 +183,7 @@ for col, (img, title) in enumerate([(good, "Rated good"),
         h, v = [d for d in range(3) if d != axis]
         frame(axes[row, col], img, axis, int(round(c[axis])), outlines=True, lw=1.6,
               zoom=((cmm[h], cmm[v] + (8 if axis == 1 else 0)), 42))
-    axes[0, col].set_title(title, color="#f87171" if col else "#86efac", fontsize=14, pad=10,
-                           fontweight="bold")
+    axes[0, col].set_title(title, color="#f87171" if col else "#86efac", fontsize=14, pad=10)
 for row, name in enumerate(["Axial", "Coronal"]):
     axes[row, 0].set_ylabel(name, color=FG, fontsize=12, labelpad=8)
 fig.legend(handles=legend_handles, loc="lower center", ncol=4, frameon=False,

@@ -82,8 +82,8 @@ PART = {"Thal": "thalamus", "Caud": "caudate", "Puta": "putamen", "Pall": "palli
         "Hipp": "hippocampus", "Amyg": "amygdala", "Accu": "accumbens"}
 PRETTY = {"gm": "Grey matter", "wm": "White matter", "csf": "CSF", "BrStem": "Brainstem"}
 PRETTY.update({f"{s}_{k}": f"{'Left' if s == 'L' else 'Right'} {v}" for s in "LR" for k, v in PART.items()})
-NAMES = {"baseline": "Baseline", "ridge": "Ridge", "random_forest": "Random Forest",
-         "gradient_boosting": "Gradient Boosting", "svr": "SVR", "gaussian_process": "Gaussian Process", "mlp": "Neural network (MLP)",
+NAMES = {"baseline": "Baseline", "ridge": "Ridge", "random_forest": "Random forest",
+         "gradient_boosting": "Gradient boosting", "svr": "SVR", "gaussian_process": "Gaussian process", "mlp": "Neural network (MLP)",
          "gm_only": "Grey matter only (linear)", "gm_csf": "Grey matter + CSF (linear)"}
 
 
@@ -302,7 +302,7 @@ s = imp_sum.iloc[::-1]
 ax.barh([PRETTY[v] for v in s.index], s.importance_mean, xerr=s.importance_sd, color="#2f6db5",
         ecolor="#9ca3af", capsize=2)
 ax.axvline(0, color="grey", lw=0.8)
-ax.set(xlabel="Increase in MAE when shuffled (years)",
+ax.set(xlabel="Increase in error when shuffled (years)",
        title=f"Permutation importance\n{NAMES[best]}, held-out folds")
 shown = top[:2]                                           # the two volumes the model relies on
 lo = min(pdp[v][1].min() for v in shown) - 2              # one shared y scale
@@ -316,7 +316,7 @@ for i, v in enumerate(shown):
            color="#6b7280", ms=8)
     a.set(title=f"Partial dependence: {PRETTY[v]}", xlabel="% of intracranial volume",
           ylabel="Predicted age (years)")
-fig.suptitle("EXPLORATORY (post-hoc)" + (" - QUICK TEST" if QUICK else ""), x=0.01, ha="left",
+fig.suptitle("Exploratory (post-hoc)" + (": quick test" if QUICK else ""), x=0.01, ha="left",
              fontsize=9, color="#6b7280")
 fig.savefig(OUT / "fig_feature_importance.png", dpi=150, bbox_inches="tight")
 plt.close(fig)
@@ -347,8 +347,8 @@ for name, (ts, te) in lc.items():
     mu, sd = np.nanmean(te, axis=1), np.nanstd(te, axis=1)
     ax.plot(ts, mu, "o-", color=colours.get(name, "#10b981"), label=NAMES[name], lw=2, ms=4)
     ax.fill_between(ts, mu - sd, mu + sd, color=colours.get(name, "#10b981"), alpha=0.15)
-ax.set(xlabel="Number of training scans", ylabel="Test MAE (years)",
-       title="Learning curve" + (" - QUICK TEST" if QUICK else " (exploratory)"))
+ax.set(xlabel="Number of training scans", ylabel="Test error (years)",
+       title="Learning curve" + (": quick test" if QUICK else " (exploratory)"))
 ax.legend(frameon=False)
 ax.grid(alpha=0.3)
 fig.tight_layout()

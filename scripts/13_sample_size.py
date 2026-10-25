@@ -147,7 +147,7 @@ ax[1].set(xscale="log", xticks=SIZES, xticklabels=SIZES, xlabel="Sample size (lo
           title="Estimated age effect in each sample")
 ax[1].legend(fontsize=8, loc="lower right")
 if SHUFFLED:
-    fig.suptitle("BLIND ANALYSIS - shuffled data, results are meaningless", color="red", fontsize=13)
+    fig.suptitle("Blind analysis: shuffled data, results are meaningless", color="red", fontsize=13)
 # Log-scale x axes: show only the sample sizes, no minor-tick labels (newer matplotlib adds them)
 for a_ in ax:
     a_.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())

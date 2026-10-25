@@ -335,8 +335,8 @@ lines += ["", f"4. Accuracy above age 80: n = {len(old)}; MAE (uncorrected) = "
 
 # ---- Figure -----------------------------------------------------------------------------------------
 # (scripts/12b_brainage_figure.py redraws this figure from the saved results, without re-running the models)
-NAMES = {"baseline": "Baseline", "ridge": "Ridge", "random_forest": "Random Forest",
-         "gradient_boosting": "Gradient Boosting"}
+NAMES = {"baseline": "Baseline", "ridge": "Ridge", "random_forest": "Random forest",
+         "gradient_boosting": "Gradient boosting"}
 fig, ax = plt.subplots(1, 3, figsize=(15, 4.6))
 lim = [subj.age.min() - 3, subj.age.max() + 3]
 for a_, col, title in [(ax[0], "pred", "Predicted age (uncorrected)"),
@@ -344,13 +344,13 @@ for a_, col, title in [(ax[0], "pred", "Predicted age (uncorrected)"),
     a_.scatter(subj.age, subj[col], s=8, alpha=0.5, color="#2f6db5")
     a_.plot(lim, lim, color="grey", lw=1, ls="--")
     a_.set(xlim=lim, ylim=lim, xlabel="Age (years)", ylabel="Predicted age (years)",
-           title=f"{title}\n{NAMES[best_model]}, Primary Analysis")
+           title=f"{title}\n{NAMES[best_model]}, primary analysis")
 s = summary[summary.analysis == "primary"].set_index("model").loc[list(MODELS)]
 ax[2].bar([NAMES[m] for m in s.index], s["mae"], color=["#999999"] + ["#2f6db5"] * 3)
-ax[2].set(ylabel="Mean absolute error (years)", title="Cross-validated MAE, uncorrected")
+ax[2].set(ylabel="Mean absolute error (years)", title="Cross-validated error, uncorrected")
 ax[2].tick_params(axis="x", rotation=20)
 if SHUFFLED:
-    fig.suptitle("BLIND ANALYSIS - shuffled data, results are meaningless", color="red", fontsize=13)
+    fig.suptitle("Blind analysis: shuffled data, results are meaningless", color="red", fontsize=13)
 fig.tight_layout()
 fig.savefig(OUT / "fig_brainage.png", dpi=150)
 

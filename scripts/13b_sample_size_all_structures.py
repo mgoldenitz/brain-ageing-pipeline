@@ -119,7 +119,7 @@ ax[1].set(xscale="log", xticks=SIZES, xticklabels=SIZES, yscale="log", xlabel="S
           title="Exaggeration of significant results\n(volumes with a significant full-sample age effect)")
 fig.colorbar(plt.cm.ScalarMappable(cmap=cmap, norm=matplotlib.colors.LogNorm(1, 10 ** (tmax / 0.9))),
              ax=ax, label="|t| of the age effect in the full sample (log scale)", shrink=0.8)
-fig.suptitle("EXPLORATORY (not pre-registered): H7 simulation repeated for every volume", fontsize=11, y=1.05)
+fig.suptitle("Exploratory (not pre-registered): H7 simulation repeated for every volume", fontsize=11, y=1.05)
 # Log-scale x axes: show only the sample sizes, no minor-tick labels (newer matplotlib adds them)
 for a_ in ax:
     a_.xaxis.set_minor_formatter(matplotlib.ticker.NullFormatter())
