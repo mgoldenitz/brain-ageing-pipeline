@@ -1,10 +1,10 @@
 # Brain changes across the lifespan: estimating age from MRI
 
-How does brain volume change from young adulthood to late adulthood, and can a machine-learning model predict a participant's age from their brain scan? This project answers both questions with a reproducible analysis pipeline applied to 563 publicly available brain MRI scans from three London hospitals.
+How does brain volume change from young adulthood to late adulthood, and can a machine-learning model predict a participant's age from their brain scan? This project answers both questions with a reproducible analysis pipeline applied to 563 publicly available brain MRI scans from three London hospitals. A non-technical version is in [README_PLAIN_LANGUAGE.md](README_PLAIN_LANGUAGE.md).
 
-Status: pre-registered analysis complete (8 October 2026). H1-H5 are supported, H6 is not supported, and H7 is technically met but uninformative (hypotheses and abbreviations are defined in [Terms and abbreviations](#terms-and-abbreviations), and details are in [Results](#results)). The analysis plan was pre-registered in [PREREGISTRATION.md](PREREGISTRATION.md) before any models were run.
+Status: pre-registered analysis complete (8 October 2026). H1-H5 are supported, H6 is not supported, and H7 is technically met but uninformative (hypotheses and abbreviations are defined in [Terms and abbreviations](#terms-and-abbreviations), and details are in [Results](#results)). The analysis plan was pre-registered in [PREREGISTRATION.md](PREREGISTRATION.md) before any models were run (commit [063dc19](https://github.com/mgoldenitz/brain-ageing-pipeline/commit/063dc19), 5 October 2026).
 
-How to read this README. Each section opens with a short plain-language summary (In short), followed by the full technical detail for researchers. Terms and abbreviations are defined in [Terms and abbreviations](#terms-and-abbreviations). A fully non-technical version is in [README_PLAIN_LANGUAGE.md](README_PLAIN_LANGUAGE.md).
+How to read this README. Each section opens with a short plain-language summary (In short), followed by the full technical detail for researchers. Terms and abbreviations are defined in [Terms and abbreviations](#terms-and-abbreviations).
 
 ## Terms and abbreviations
 
