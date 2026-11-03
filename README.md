@@ -306,4 +306,4 @@ All analysis code was developed on a blind version of the data, with age, sex an
 
 ## Author
 
-Michael Goldenitz. [LinkedIn](https://www.linkedin.com/in/michael-goldenitz-790509265/)
+Michael Goldenitz. [LinkedIn](https://www.linkedin.com/in/michael-goldenitz/)
