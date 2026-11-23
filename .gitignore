@@ -1,4 +1,13 @@
-   logs/
-   *.nii.gz
-   __pycache__/
-   *.docx
+logs/
+*.nii.gz
+__pycache__/
+*.docx
+
+# Local data and QC images. Files already tracked in data/ stay tracked.
+data/*
+qc/
+thumbnails/
+
+# Writing notes
+style-samples.md
+writing-style.md
