@@ -127,16 +127,6 @@ Scripts 01 to 18 on the IXI T1 scans, by language.
 
 ![Data tables](images/diagram-erd.svg)
 
-The tables in brain_ageing.db and their keys.
-
-![Processing and pre-registration timeline](images/diagram-timeline.svg)
-
-Times come from logs/*.out (America/Toronto assumed). Events with a date only are drawn at 00:00.
-
-![Processing run times](images/diagram-waterfall.svg)
-
-The T1 processing run, measured from logs/full.out, full2.out and rerun_first.out. Time 0 is 2026-10-03 14:27:04.
-
 ## Quality-control decisions made before unblinding (6 October 2026)
 
 In short: Scans with a failed whole-brain measurement were removed. Scans with only failed deep-brain outlines kept their whole-brain measurements. A second, blind look at every failure reduced the number of whole-brain failures from 72 to 18, and both versions of the ratings are analysed.
